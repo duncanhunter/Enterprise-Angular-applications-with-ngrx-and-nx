@@ -1,0 +1,22 @@
+{
+  "name": "@dunchunter/enterprise-angular-applications-with-ngrx-and-nx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duncanhunter/Enterprise-Angular-applications-with-ngrx-and-nx.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/duncanhunter/Enterprise-Angular-applications-with-ngrx-and-nx/issues"
+  },
+  "homepage": "https://github.com/duncanhunter/Enterprise-Angular-applications-with-ngrx-and-nx#readme",
+  "dependencies": {
+    "gitbook-plugin-copy-code": "^4.0.0-alpha.1"
+  }
+}
