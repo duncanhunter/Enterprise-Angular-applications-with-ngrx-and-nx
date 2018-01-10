@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/duncanhunter/Enterprise-Angular-applications-with-ngrx-and-nx#readme",
   "dependencies": {
-    "gitbook-plugin-copy-code": "^4.0.0-alpha.1"
+    "gitbook-plugin-copy-code": "^4.0.0-alpha.1",
+    "gitbook-plugin-highlight": "^2.0.3"
   }
 }
