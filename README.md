@@ -1,3 +1,6 @@
+
+![angular-logo]('./assets/Angular_full_color_logo.svg.png)
+
 # Workshop: Enterprise Angular applications with ngrx and nx
 
 Building enterprise Angular applications is not easy and when you need to share code between multiple Angular mobile or web applications it is even harder. If you are about to kick off or are in the middle of a large application in Angular this workshop will prepare you to tackle implementing the best project structure and patterns using nx workspaces and ngrx state management patterns.
