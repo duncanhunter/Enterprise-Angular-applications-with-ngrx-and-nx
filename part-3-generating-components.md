@@ -12,7 +12,7 @@ ng g lib auth --routing --parent-module=apps/customer-portal/src/app/app.module.
 ng g c container/login -a=auth
 ```
 
-```
+```ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Route } from '@angular/router';
@@ -29,7 +29,6 @@ const COMPONENTS = [LoginComponent];
   exports: [COMPONENTS]
 })
 export class AuthModule {}
-
 ```
 
 index.ts is for the public api for the lib
