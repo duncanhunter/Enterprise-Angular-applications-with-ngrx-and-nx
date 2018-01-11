@@ -7,7 +7,7 @@
 * [Introduction](chapter1.md)
 * [Part 0 - Environment setup](part-0-environment-setup.md)
 * [Part 1 -  Creating an nx workspace](part-1-.md)
-* [Part 2 - Generating components](part-3-generating-components.md)
+* [Part 2 - Generating components and nx lib](part-3-generating-components.md)
 * [Part 3 - Angular Services ](part-3-angular-services.md)
 * [Part 4 - RxJS and Angulars HTTP Module](part-4-.md)
 * [Part 5 - Thirdparty dependencies](part-5-thirdparty-dependencies.md)
