@@ -81,6 +81,7 @@ const middlewares = jsonServer.defaults();
 const db = require('./db.json');
 
 server.use(middlewares);
+jsonServer.defaults([{ noCors: true }]);
 server.use(jsonServer.bodyParser);
 
 server.post('/login', (req, res, next) => {
@@ -91,7 +92,7 @@ server.post('/login', (req, res, next) => {
 
   user
     ? res.send({ ...removerPasswordFromUser(user), token: checkIfAdmin(user) })
-    : res.sendStatus(401);
+    : res.status(500).send('Incorrect username or password')
 });
 
 server.post('/register', (req, res) => {
@@ -132,7 +133,8 @@ function checkIfAdmin(user, bypassToken = false) {
 function isAuthorized(req) {
   return req.headers.authorization === 'admin-token' ? true : false;
 }
+
 ```
 
-start the server an
+
 
