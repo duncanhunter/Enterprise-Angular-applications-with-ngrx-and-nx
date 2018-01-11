@@ -1,6 +1,6 @@
 # Introduction
 
-### Finished Code for the CRM Module {#finishedcodeforthecrmmodule}
+### Finished Workshop Code {#finishedcodeforthecrmmodule}
 
 ```
 git clone "https://github.com/duncanhunter/Demo-App-Enterprise-Angular-applications-with-ngrx-and-nx.git"
@@ -10,7 +10,7 @@ cd demo-app
 npm install
 ```
 
-### WIP Course Code {#wipcoursecode}
+### WIP Workshop Code {#wipcoursecode}
 
 ```
 git clone "https://github.com/duncanhunter/Demo-App-NDC-London-2018-Enterprise-Angular-applications-with-ngrx-and-nx”
