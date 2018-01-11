@@ -86,15 +86,20 @@ export class AuthModule { }
 ```
 
 ```html
-<form>
-    <mat-form-field>
-        <input matInput placeholder="username" type="text" #username>
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput placeholder="password" type="text" #password>
-    </mat-form-field>
-</form>
-<button mat-raised-button (click)="login(username.value, password.value)">login</button>
+<mat-card>
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+        <form fxLayout="column" fxLayoutAlign="center none">
+            <mat-input-container>
+                <input matInput placeholder="username" type="text" #username>
+            </mat-input-container>
+            <mat-input-container>
+                <input matInput placeholder="password" type="text" #password>
+            </mat-input-container>
+            <button mat-raised-button (click)="login(username.value, password.value)">login</button>
+        </form>
+    </mat-card-content>
+</mat-card>
 ```
 
 
