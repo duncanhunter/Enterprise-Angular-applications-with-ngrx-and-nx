@@ -17,7 +17,7 @@ node -v
 
 If you would like to use source control and check out completed work then it is recommended to have git installed on your machine. You can download git from[ https://git-scm.com/downloads ](https://git-scm.com/downloads )
 
- You can check your version of node by running the following command in the terminal.
+You can check your version of node by running the following command in the terminal.
 
 ```
 git --version
@@ -34,6 +34,10 @@ npm install -g @angular/cli
 ```
 npm install -g @nrwl/schematics
 ```
+
+get vscode extensions
+
+including ng-switcher
 
 
 
