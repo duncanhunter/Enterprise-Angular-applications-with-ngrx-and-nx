@@ -35,3 +35,11 @@ index.ts is for the public api for the lib
 
 add to cli.json libs array allow us to use --app with libs to get cli scaffolding and code generation
 
+1. delete everything but 
+
+```ts
+<router-outlet></router-outlet>
+```
+
+
+
