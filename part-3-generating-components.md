@@ -12,6 +12,8 @@ ng g lib auth --routing --parent-module=apps/customer-portal/src/app/app.module.
 ng g c container/login -a=auth
 ```
 
+decision not to make a presentational component for this
+
 ```ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -66,7 +68,6 @@ export class LoginComponent implements OnInit {
     console.log(username, password);
   }
 }
-
 ```
 
 
