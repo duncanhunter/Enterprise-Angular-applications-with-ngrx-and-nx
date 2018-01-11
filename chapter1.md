@@ -14,7 +14,7 @@
 12. Entity state adapter
 13. Router actions and effects
 14. Unit and e2e testing
-15. Building and deploying your nx monorepo
+15. Deploying your nx monorepo
 
 ### Finished Workshop Code {#finishedcodeforthecrmmodule}
 
