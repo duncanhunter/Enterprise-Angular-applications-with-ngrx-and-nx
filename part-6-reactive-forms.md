@@ -8,14 +8,16 @@ npm i @ultimate/ngxerrors
 
 save injecting the formBuilder and less junk calling it.
 
-```
-  loginForm = new FormGroup({
+```ts
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+...
+
+loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
-  });
+});
 ```
-
-
 
 ```html
 <mat-card>
