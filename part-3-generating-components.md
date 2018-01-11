@@ -5,12 +5,10 @@ ng g lib --help
 ```
 
 ```
-ng g lib auth 
+ng g lib auth --routing --parent-module=apps/customer-portal/src/app/app.module.ts
 ```
 
 index.ts is for the public api for the lib
 
-add to cli.json libs array allow us to use --app with libs to get cli scaffolding and code generation 
-
-
+add to cli.json libs array allow us to use --app with libs to get cli scaffolding and code generation
 

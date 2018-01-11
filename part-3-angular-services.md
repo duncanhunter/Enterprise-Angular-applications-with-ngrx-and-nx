@@ -1,6 +1,8 @@
 # Part 3 - Angular Services
 
-
+```
+ng g service auth -a=auth
+```
 
 Add a folder called server to the root directory
 
