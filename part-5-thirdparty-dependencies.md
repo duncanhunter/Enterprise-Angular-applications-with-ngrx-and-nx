@@ -2,8 +2,6 @@
 
 [https://material.angular.io/](https://material.angular.io/)
 
-
-
 ```
 npm install --save @angular/material @angular/cdk @angular/flex-layout
 ```
@@ -70,11 +68,17 @@ import {
   ]
 })
 export class MaterialModule {}
-
 ```
 
 ```ts
+import { MaterialModule } from '@demo-app/material';
+
+@NgModule({
+  ...
 imports: [CommonModule, RouterModule, HttpClientModule, MaterialModule],
+  ...
+})
+export class AuthModule { }
 ```
 
 ```css
