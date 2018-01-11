@@ -1,3 +1,4 @@
+# ![](/assets/logos.png)
 
 # Workshop: Enterprise Angular applications with ngrx and nx
 
@@ -41,7 +42,4 @@ You need to bring your own laptop with the below software installed to follow th
 * Angular CLI
 
 If you get stuck we can help you on the day but it helps to have this already installed.
-
-  
-
 
