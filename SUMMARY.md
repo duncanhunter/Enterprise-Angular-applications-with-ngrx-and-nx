@@ -1,3 +1,5 @@
 # Summary
 
-* [First Chapter](chapter1.md)
+* [Course Description](README.md)
+* [Introduction](chapter1.md)
+
