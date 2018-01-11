@@ -4,7 +4,11 @@ Add a folder called server to the root directory
 
 Add a file called db.json and index.js
 
+add json-server
 
+```
+npm i json-server --save-dev
+```
 
 _**package.json**_
 
@@ -124,7 +128,6 @@ function checkIfAdmin(user, bypassToken = false) {
 function isAuthorized(req) {
   return req.headers.authorization === 'admin-token' ? true : false;
 }
-
 ```
 
 
