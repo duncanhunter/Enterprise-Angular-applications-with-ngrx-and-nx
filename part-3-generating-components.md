@@ -41,5 +41,33 @@ add to cli.json libs array allow us to use --app with libs to get cli scaffoldin
 <router-outlet></router-outlet>
 ```
 
+```html
+<input type="text" #username>
+<input type="text" #password>
+<button (click)="login(username.value, password.value)">login</button>
+```
+
+```ts
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
+})
+export class LoginComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  login(username: string, password: string) {
+    console.log(username, password);
+  }
+}
+
+```
+
 
 
