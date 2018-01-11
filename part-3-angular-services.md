@@ -4,7 +4,7 @@
 ng g service auth -a=auth
 ```
 
-```
+```ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
