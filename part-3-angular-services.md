@@ -4,8 +4,6 @@
 ng g service auth -a=auth
 ```
 
-
-
 ```
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -21,12 +19,9 @@ export class AuthService {
     });
   }
 }
-
 ```
 
-
-
-```
+```ts
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Route } from '@angular/router';
@@ -53,12 +48,9 @@ export class AuthModule {
     };
   }
 }
-
 ```
 
-
-
-```
+```ts
 AuthModule.forRoot()
 ```
 
