@@ -74,7 +74,7 @@ scripts: {
 
 _**server/db.json**_
 
-```
+```json
 {
     "users": [
       {
