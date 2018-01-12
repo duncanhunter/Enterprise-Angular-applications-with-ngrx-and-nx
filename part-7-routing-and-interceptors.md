@@ -128,6 +128,7 @@ export { AuthGuard } from './src/guards/auth.guard';
 ```ts
 RouterModule.forRoot(
    [
+     { path: '', pathMatch: 'full', redirectTo: 'user-profile' },
      { path: 'auth', children: authRoutes },
      {
        path: 'user-profile',
