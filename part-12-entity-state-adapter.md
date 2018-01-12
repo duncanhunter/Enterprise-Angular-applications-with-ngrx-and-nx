@@ -179,5 +179,42 @@ export class UsersService {
 }
 ```
 
+change directory to +state file
+
+```ts
+ng g action users --collection @ngrx/schematics
+```
+
+```ts
+import { Action } from '@ngrx/store';
+import { User } from '@demo-app/data-models';
+
+export enum UsersActionTypes {
+  LoadUsers = '[Users] Load',
+  LoadUsersSuccess = '[Users] Load Sucess',
+  LoadUsersFail = '[Users] Load Fail'
+}
+
+export class LoadUsersAction implements Action {
+  readonly type = UsersActionTypes.LoadUsers;
+}
+
+export class LoadUsersSuccessAction implements Action {
+  readonly type = UsersActionTypes.LoadUsersSuccess;
+  constructor(private payload: User[]) {}
+}
+
+export class LoadUsersFailAction implements Action {
+  readonly type = UsersActionTypes.LoadUsersSuccess;
+  constructor(private payload: any) {}
+}
+
+export type UsersActions =
+  | LoadUsersAction
+  | LoadUsersSuccessAction
+  | LoadUsersFailAction;
+
+```
+
 
 
