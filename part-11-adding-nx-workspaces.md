@@ -64,19 +64,23 @@ body {
 }
 ```
 
+do not forget the browser animations module
+
 ```ts
 @NgModule({
   imports: [
   BrowserModule,
   NxModule.forRoot(),
-  RouterModule.forRoot(
-    [
-      { path: 'auth', children: authRoutes }
-    ],
-    {
-      initialNavigation: 'enabled'
-    }
-  ),  
+      [
+        { path: '', pathMatch: 'full', redirectTo: 'user-profile' },
+        { path: 'auth', children: authRoutes },
+        {
+          path: 'user-profile',
+          loadChildren: '@demo-app/user-profile#UserProfileModule',
+          canActivate: [AuthGuard]
+        }
+      ], 
+  BrowserAnimationsModule,
   ...
 ```
 
