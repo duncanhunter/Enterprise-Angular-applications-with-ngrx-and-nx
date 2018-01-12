@@ -12,16 +12,18 @@ ng g lib user-profile --routing --lazy --parent-module=apps/customer-portal/src/
 ng g c containers/user-profile -a=user-profile
 ```
 
-    login() {
-      this.authService
-        .login(this.loginForm.value.username, this.loginForm.value.password)
-        .subscribe(
-          (user: User) => this.router.navigate([`/user-profile/${user.id}`]),
-          error => (this.error = error)
-      );
-    }
-
+```ts
+login() {
+  this.authService
+    .login(this.loginForm.value.username, this.loginForm.value.password)
+    .subscribe(
+      (user: User) => this.router.navigate([`/user-profile/${user.id}`]),
+      error => (this.error = error)
+  );
+}
 ```
+
+```ts
 RouterModule.forRoot(
     [
       { path: '', pathMatch: 'full', redirectTo: 'user-profile' },
@@ -37,7 +39,7 @@ RouterModule.forRoot(
 ),
 ```
 
-```
+```ts
 @NgModule({
   imports: [
     CommonModule,
@@ -49,7 +51,7 @@ export class UserProfileModule {}
 ```
 
 ```
-ng g guard guards/auth  -a=auth
+ng g guard guards/auth -a=auth
 ```
 
 ```ts
