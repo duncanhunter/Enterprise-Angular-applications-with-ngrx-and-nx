@@ -85,5 +85,24 @@ do not forget the browser animations module
   ...
 ```
 
+```ts
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/out-tsc/apps/admin-portal",
+    "module": "es2015"
+  },
+  "include": [
+    "**/*.ts"
+    /* add all lazy-loaded libraries here: "../../../libs/my-lib/index.ts" */
+    , "../../../libs/user-profile/index.ts"
+  ],
+  "exclude": [
+    "**/*.spec.ts"
+  ]
+}
+
+```
+
 
 
