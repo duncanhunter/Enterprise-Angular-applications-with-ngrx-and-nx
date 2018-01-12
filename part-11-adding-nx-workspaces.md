@@ -19,5 +19,19 @@ ng g ngrx app --module=apps/admin-portal/src/app/app.module.ts  --root
 
 add auth module
 
+```ts
+@NgModule({
+  imports: [
+  ...
+  AuthModule.forRoot()
+  ...
+  ],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
+  providers: [AppEffects]
+})
+export class AppModule { }
+```
+
 
 
