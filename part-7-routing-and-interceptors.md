@@ -95,25 +95,31 @@ login(username: string, password: string) {
 
 ```ts
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './../services/auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return this.authService.isAuthenticated ? true : false;
+    if(this.authService.isAuthenticated) {
+      return true;
+    } else {
+      this.router.navigate([`/auth/login`]);
+      return false;
+    }
   }
 }
 ```
 
-```
-
+```ts
 export { AuthModule , authRoutes } from './src/auth.module';
 export { AuthGuard } from './src/guards/auth.guard';
 ```
@@ -132,6 +138,136 @@ RouterModule.forRoot(
      initialNavigation: 'enabled'
    }
 ),
+```
+
+```ts
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
+import { User } from '@demo-app/data-models';
+
+@Injectable()
+export class AuthService {
+  user: User;
+  isAuthenticated: boolean;
+
+  constructor(private httpClient: HttpClient) {}
+
+  login(username: string, password: string) {
+    return this.httpClient
+      .post('http://localhost:3000/login', {
+        username: username,
+        password: password
+      })
+      .pipe(tap((user: User) => {
+        this.isAuthenticated = true;
+        this.user = user;
+        this.setAuthToken(user.token);
+      }));
+  }
+
+  setAuthToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+  getAuthToken(): string {
+    return localStorage.getItem('token');
+  }
+
+  clearAuthToken() {
+    localStorage.removeItem('token');
+  }
+}
+
+```
+
+```ts
+import { Injectable, Injector } from '@angular/core';
+import {
+  HttpEvent,
+  HttpInterceptor,
+  HttpHandler,
+  HttpRequest
+} from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { AuthService } from '../services/auth.service';
+import { switchMap, tap } from 'rxjs/operators';
+import { of } from 'rxjs/Observable/of';
+
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+  authService: AuthService;
+  constructor(private injector: Injector) {}
+
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    this.authService = this.injector.get(AuthService);
+    const token = this.authService.getAuthToken();
+
+    if (token) {
+      const authReq = req.clone({
+        headers: req.headers.set('Authorization', token)
+      });
+      return next.handle(authReq);
+    } else {
+      return next.handle(req);
+    }
+  }
+}
+
+```
+
+```
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Route } from '@angular/router';
+import { LoginComponent } from './container/login/login.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthService } from './services/auth.service';
+import { MaterialModule } from '@demo-app/material';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from './/guards/auth.guard';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+
+export const authRoutes: Route[] = [
+  { path: 'login', component: LoginComponent }
+];
+const COMPONENTS = [LoginComponent];
+
+@NgModule({
+  imports: [
+    CommonModule,
+    RouterModule,
+    HttpClientModule,
+    MaterialModule,
+    ReactiveFormsModule
+  ],
+  declarations: [COMPONENTS],
+  exports: [COMPONENTS],
+  providers: [
+    AuthService,
+    AuthGuard
+  ]
+})
+export class AuthModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: AuthModule,
+      providers: [
+        AuthService,
+        AuthGuard,
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthInterceptor,
+          multi: true
+        }
+      ]
+    };
+  }
+}
+
 ```
 
 
