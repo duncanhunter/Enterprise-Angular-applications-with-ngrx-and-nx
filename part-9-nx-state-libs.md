@@ -49,7 +49,6 @@ export type AuthStateActions =
   LoginAction
   | LoginFailAction
   | LoginSuccessAction;
-
 ```
 
 
