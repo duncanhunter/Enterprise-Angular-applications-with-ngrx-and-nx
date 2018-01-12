@@ -131,7 +131,6 @@ export class LayoutComponent implements OnInit {
   }
 
 }
-
 ```
 
 
