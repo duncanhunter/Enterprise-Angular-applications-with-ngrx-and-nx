@@ -8,5 +8,9 @@ ng g lib user-profile
 ng g lib user-profile --routing --lazy --parent-module=apps/customer-portal/src/app/app.module.ts
 ```
 
+```
+ng g c containers/user-profile -a=user-profile
+```
+
 
 
