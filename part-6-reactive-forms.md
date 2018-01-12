@@ -58,5 +58,9 @@ export interface User {
 }
 ```
 
+```ts
+export { User } from './src/data-models';
+```
+
 
 
