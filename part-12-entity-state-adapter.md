@@ -53,7 +53,6 @@ ng g ngrx users --module=libs/admin-portal/users/src/users.module.ts
 ```
 
 ```ts
-
 @NgModule({
   imports: [
     CommonModule,
@@ -69,6 +68,23 @@ ng g ngrx users --module=libs/admin-portal/users/src/users.module.ts
   providers: [UsersEffects]
 })
 export class UsersModule {}
+```
+
+```ts
+ RouterModule.forRoot([
+  { path: '', pathMatch: 'full', redirectTo: 'user-profile' },
+  { path: 'auth', children: authRoutes },
+  {
+    path: 'user-profile',
+    loadChildren: '@demo-app/user-profile#UserProfileModule',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'users',
+    loadChildren: '@demo-app/admin-portal/users#UsersModule',
+    canActivate: [AuthAdminGuard]
+  }
+]),
 ```
 
 
