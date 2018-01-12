@@ -70,7 +70,21 @@ export class LayoutComponent implements OnInit {
   }
 
 }
+```
 
+```ts
+import { LayoutModule } from '@demo-app/customer-portal/layout';
+
+@NgModule({
+  imports: [
+   ...
+    LayoutModule
+    ...
+  ],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
 ```
 
 
