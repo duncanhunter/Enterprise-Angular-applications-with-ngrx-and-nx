@@ -21,5 +21,31 @@ ng g c containers/user-profile -a=user-profile
       );
     }
 
+```
+RouterModule.forRoot(
+    [
+      { path: 'auth', children: authRoutes },
+      {
+        path: 'user-profile',
+        loadChildren: '@demo-app/user-profile#UserProfileModule'
+      }
+    ],
+    {
+       initialNavigation: 'enabled'
+    }
+),
+```
+
+```
+@NgModule({
+  imports: [
+    CommonModule,
+    RouterModule.forChild([{ path: ':id', component: UserProfileComponent }])
+  ],
+  declarations: [UserProfileComponent]
+})
+export class UserProfileModule {}
+```
+
 
 
