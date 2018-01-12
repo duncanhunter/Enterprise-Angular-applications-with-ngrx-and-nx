@@ -51,5 +51,37 @@ export type AuthStateActions =
   | LoginSuccessAction;
 ```
 
+```ts
+import { Injectable } from '@angular/core';
+import { Effect, Actions } from '@ngrx/effects';
+import { of } from 'rxjs/observable/of';
+import 'rxjs/add/operator/switchMap';
+import { AuthState } from './auth.interfaces';
+import * as authActions from './auth.actions';
+import { map, catchError, tap, mergeMap } from 'rxjs/operators';
+import { AuthService } from './../services/auth.service';
+
+@Injectable()
+export class AuthEffects {
+  @Effect()
+  login = this.actions$
+    .ofType(authActions.AuthActionTypes.Login)
+    .pipe(
+      mergeMap((action: authActions.LoginAction) =>
+        this.authService
+          .login(action.payload.username, action.payload.password)
+          .pipe(
+            tap(console.log),
+            map(user => new authActions.LoginSuccessAction(user)),
+            catchError(error => of(new authActions.LoginFailAction(error)))
+          )
+      )
+    );
+
+  constructor(private actions$: Actions, private authService: AuthService) {}
+}
+
+```
+
 
 
