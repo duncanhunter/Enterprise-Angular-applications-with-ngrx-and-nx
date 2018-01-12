@@ -80,7 +80,40 @@ export class AuthEffects {
 
   constructor(private actions$: Actions, private authService: AuthService) {}
 }
+```
 
+```ts
+import { Injectable } from '@angular/core';
+import { Effect, Actions } from '@ngrx/effects';
+import { of } from 'rxjs/observable/of';
+import 'rxjs/add/operator/switchMap';
+import { AuthState } from './auth.interfaces';
+import * as authActions from './auth.actions';
+import { map, catchError, tap, mergeMap } from 'rxjs/operators';
+import { AuthService } from './../services/auth.service';
+import { DataPersistence } from '@nrwl/nx';
+
+@Injectable()
+export class AuthEffects {
+  @Effect()
+  login$ = this.dataPersistence.fetch(authActions.AuthActionTypes.Login, {
+    run: (action: authActions.LoginAction, state: AuthState) => {
+      return this.authService
+        .login(action.payload.username, action.payload.password)
+        .pipe(map(user => new authActions.LoginSuccessAction(user)));
+    },
+
+    onError: (action: authActions.LoginAction, error) => {
+      return of(new authActions.LoginFailAction(error));
+    }
+  });
+
+  constructor(
+    private actions: Actions,
+    private dataPersistence: DataPersistence<AuthState>,
+    private authService: AuthService
+  ) {}
+}
 ```
 
 
