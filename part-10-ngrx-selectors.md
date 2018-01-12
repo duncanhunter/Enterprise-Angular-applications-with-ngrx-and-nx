@@ -93,5 +93,46 @@ export class AppModule {}
 </app-layout>
 ```
 
+add index.ts
+
+```ts
+import { createSelector, createFeatureSelector } from '@ngrx/store';
+import { Auth } from './auth.interfaces';
+
+export const getAuthState = createFeatureSelector<Auth>('auth');
+export const getUser = createSelector(getAuthState, state => state.user);
+```
+
+```ts
+export { AuthModule , authRoutes } from './src/auth.module';
+export { AuthGuard } from './src/guards/auth.guard';
+export { AuthState } from './src/+state/auth.interfaces';
+export * from './src/+state';
+```
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AuthState, getUser } from '@demo-app/auth';
+import { User } from '@demo-app/data-models';
+import { Observable } from 'rxjs/Observable';
+
+@Component({
+  selector: 'app-layout',
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.scss']
+})
+export class LayoutComponent implements OnInit {
+  user$: Observable<User>;
+  constructor(private store: Store<AuthState>) { }
+
+  ngOnInit() {
+    this.user$ = this.store.select(getUser);
+  }
+
+}
+
+```
+
 
 
