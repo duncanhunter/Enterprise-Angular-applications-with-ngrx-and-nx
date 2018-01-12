@@ -4,18 +4,12 @@
 create-nx-workspace demo-app
 ```
 
-
-
 look at
 
 1. cli.json
 2. tsconfig paths
 3. package.json
 4. apps and libs empty
-
-
-
-
 
 change from css to scss
 
