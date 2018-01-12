@@ -153,7 +153,7 @@ export class AuthModule {
   <span>Admin Portal</span>
   <div class="right-nav">
     <span>{{(user$ | async)?.username}}</span>
-    <button *ngIf="(user$ | async)?.role === 'admin'" [routerLink]="['/users']">Users</button>
+    <button mat-button *ngIf="(user$ | async)?.role === 'admin'" [routerLink]="['/users']">Users</button>
   </div>
 </mat-toolbar>
 <ng-content></ng-content>
