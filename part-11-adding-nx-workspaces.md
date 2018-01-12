@@ -50,6 +50,12 @@ ng g lib layout --directory=admin-portal
 <ng-content></ng-content>
 ```
 
+```html
+<app-layout>
+    <router-outlet></router-outlet>
+</app-layout>
+```
+
 ```css
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
@@ -58,8 +64,21 @@ body {
 }
 ```
 
-```css
-
+```ts
+RouterModule.forRoot(
+[
+   { path: '', pathMatch: 'full', redirectTo: 'user-profile' },
+   { path: 'auth', children: authRoutes },
+   {
+     path: 'user-profile',
+     loadChildren: '@demo-app/user-profile#UserProfileModule',
+     canActivate: [AuthGuard]
+   }
+ ],
+ {
+   initialNavigation: 'enabled'
+ }
+),
 ```
 
 
