@@ -87,5 +87,11 @@ import { LayoutModule } from '@demo-app/customer-portal/layout';
 export class AppModule {}
 ```
 
+```html
+<app-layout>
+    <router-outlet></router-outlet>
+</app-layout>
+```
+
 
 
