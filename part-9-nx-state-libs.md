@@ -201,7 +201,6 @@ export class AuthEffects {
     private router: Router
   ) {}
 }
-
 ```
 
 ```ts
@@ -240,7 +239,6 @@ export type AuthActions =
   | LoginFailAction
   | LoginSuccessAction
   | NavigateToProfileAction;
-
 ```
 
 
