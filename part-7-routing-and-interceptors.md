@@ -51,7 +51,7 @@ export class UserProfileModule {}
 ng g guard guards/auth  -a=auth
 ```
 
-```
+```ts
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Route } from '@angular/router';
@@ -83,7 +83,7 @@ export class AuthModule {
 }
 ```
 
-```
+```ts
 login(username: string, password: string) {
   return this.httpClient.post('http://localhost:3000/login', {
     username: username,
