@@ -49,7 +49,26 @@ ng g c containers/user-list -a=admin-portal/users
 ```
 
 ```
+ng g ngrx users --module=libs/admin-portal/users/src/users.module.ts
+```
 
+```ts
+
+@NgModule({
+  imports: [
+    CommonModule,
+    RouterModule.forChild([
+      { path: '', pathMatch: 'full', component: UserListComponent }
+    ]),
+    StoreModule.forFeature('users', usersReducer, {
+      initialState: usersInitialState
+    }),
+    EffectsModule.forFeature([UsersEffects])
+  ],
+  declarations: [UserListComponent],
+  providers: [UsersEffects]
+})
+export class UsersModule {}
 ```
 
 
