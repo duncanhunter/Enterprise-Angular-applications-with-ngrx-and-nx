@@ -25,6 +25,16 @@ export class LayoutModule {
 ng g c containers/layout -a=customer-portal/layout
 ```
 
+```ts
+<mat-toolbar color="primary" fxLayout="row">
+  <span>Customer Portal</span>
+  <div class="right-nav">
+    <span>{{(user$ | async)?.username}}</span>
+  </div>
+</mat-toolbar>
+<ng-content></ng-content>
+```
+
 ```css
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
@@ -33,10 +43,10 @@ body {
 }
 ```
 
-
-
-```
-
+```css
+.right-nav {
+    margin-left: auto;
+}
 ```
 
 
