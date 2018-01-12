@@ -26,7 +26,7 @@ export class AuthAdminGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> {
       return this.store.select(getUser).pipe(
         map((user: User) => {          
-          if(user && user.role === 'auth') {
+          if(user && user.role === 'admin') {
             return true;
           } else {
             this.router.navigate([`/auth/login`]);
