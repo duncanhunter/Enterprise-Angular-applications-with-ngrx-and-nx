@@ -65,20 +65,19 @@ body {
 ```
 
 ```ts
-RouterModule.forRoot(
-[
-   { path: '', pathMatch: 'full', redirectTo: 'user-profile' },
-   { path: 'auth', children: authRoutes },
-   {
-     path: 'user-profile',
-     loadChildren: '@demo-app/user-profile#UserProfileModule',
-     canActivate: [AuthGuard]
-   }
- ],
- {
-   initialNavigation: 'enabled'
- }
-),
+@NgModule({
+  imports: [
+  BrowserModule,
+  NxModule.forRoot(),
+  RouterModule.forRoot(
+    [
+      { path: 'auth', children: authRoutes }
+    ],
+    {
+      initialNavigation: 'enabled'
+    }
+  ),  
+  ...
 ```
 
 
