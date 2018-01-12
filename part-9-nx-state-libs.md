@@ -116,5 +116,42 @@ export class AuthEffects {
 }
 ```
 
+```ts
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { User } from '@demo-app/data-models';
+import { Store } from '@ngrx/store';
+import { AuthState } from './../../+state/auth.interfaces';
+import * as authActions from './../../+state/auth.actions';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
+})
+export class LoginComponent implements OnInit {
+  error: string;
+
+  constructor(private store: Store<AuthState>) {}
+
+  loginForm = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required])
+  });
+
+  ngOnInit() {}
+
+  login() {
+    this.store.dispatch(
+      new authActions.LoginAction({
+        username: this.loginForm.value.username,
+        password: this.loginForm.value.password
+      })
+    );
+  }
+}
+
+```
+
 
 
