@@ -71,15 +71,16 @@ do not forget the browser animations module
   imports: [
   BrowserModule,
   NxModule.forRoot(),
-      [
-        { path: '', pathMatch: 'full', redirectTo: 'user-profile' },
-        { path: 'auth', children: authRoutes },
-        {
-          path: 'user-profile',
-          loadChildren: '@demo-app/user-profile#UserProfileModule',
-          canActivate: [AuthGuard]
-        }
-      ], 
+  RouterModule.forRoot(
+  [
+    { path: '', pathMatch: 'full', redirectTo: 'user-profile' },
+    { path: 'auth', children: authRoutes },
+    {
+      path: 'user-profile',
+      loadChildren: '@demo-app/user-profile#UserProfileModule',
+      canActivate: [AuthGuard]
+    }
+  ]), 
   BrowserAnimationsModule,
   ...
 ```
