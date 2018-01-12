@@ -81,7 +81,16 @@ export class AuthModule {
     };
   }
 }
+```
 
+```
+login(username: string, password: string) {
+  return this.httpClient.post('http://localhost:3000/login', {
+    username: username,
+    password: password
+  })
+  .pipe(tap(user => this.isAuthenticated = true));
+}
 ```
 
 
