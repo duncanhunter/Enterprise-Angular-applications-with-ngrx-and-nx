@@ -46,10 +46,16 @@ loginForm = new FormGroup({
 </mat-card>
 ```
 
-
-
 ```
 ng generate lib data-models --nomodule
+```
+
+```ts
+export interface User {
+    username: string;
+    id: number;
+    country: string;
+}
 ```
 
 
