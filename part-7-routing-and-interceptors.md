@@ -93,5 +93,46 @@ login(username: string, password: string) {
 }
 ```
 
+```ts
+import { Injectable } from '@angular/core';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { AuthService } from './../services/auth.service';
+
+@Injectable()
+export class AuthGuard implements CanActivate {
+
+  constructor(private authService: AuthService) {}
+
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    return this.authService.isAuthenticated ? true : false;
+  }
+}
+```
+
+```
+
+export { AuthModule , authRoutes } from './src/auth.module';
+export { AuthGuard } from './src/guards/auth.guard';
+```
+
+```ts
+RouterModule.forRoot(
+   [
+     { path: 'auth', children: authRoutes },
+     {
+       path: 'user-profile',
+       loadChildren: '@demo-app/user-profile#UserProfileModule',
+       canActivate: [AuthGuard]
+     }
+   ],
+   {
+     initialNavigation: 'enabled'
+   }
+),
+```
+
 
 
