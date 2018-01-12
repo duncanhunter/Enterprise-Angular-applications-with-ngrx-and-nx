@@ -48,3 +48,9 @@ loginForm = new FormGroup({
 
 
 
+```
+ng generate lib data-models --nomodule
+```
+
+
+
