@@ -24,6 +24,7 @@ ng g c containers/user-profile -a=user-profile
 ```
 RouterModule.forRoot(
     [
+      { path: '', pathMatch: 'full', redirectTo: 'user-profile' },
       { path: 'auth', children: authRoutes },
       {
         path: 'user-profile',
@@ -178,7 +179,6 @@ export class AuthService {
     localStorage.removeItem('token');
   }
 }
-
 ```
 
 ```ts
@@ -216,7 +216,6 @@ export class AuthInterceptor implements HttpInterceptor {
     }
   }
 }
-
 ```
 
 ```
@@ -267,7 +266,6 @@ export class AuthModule {
     };
   }
 }
-
 ```
 
 
