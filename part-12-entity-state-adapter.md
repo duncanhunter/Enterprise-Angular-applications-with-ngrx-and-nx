@@ -41,18 +41,12 @@ export class AuthAdminGuard implements CanActivate {
 Make a users lib in an admin directory
 
 ```
-ng g lib users --directory=admin-portal
-```
-
-```
-ng g lib users --routing --lazy --parent-module=apps/admin-portal/src/app/app.module.ts
+ng g lib users --directory=admin-portal --routing --lazy --parent-module=apps/admin-portal/src/app/app.module.ts
 ```
 
 ```
 ng g c containers/user-list -a=admin-portal/users
 ```
-
-
 
 ```
 
