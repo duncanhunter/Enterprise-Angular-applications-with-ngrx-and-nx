@@ -146,7 +146,17 @@ export class AuthModule {
     };
   }
 }
+```
 
+```html
+<mat-toolbar color="primary" fxLayout="row">
+  <span>Admin Portal</span>
+  <div class="right-nav">
+    <span>{{(user$ | async)?.username}}</span>
+    <button *ngIf="(user$ | async)?.role === 'admin'" [routerLink]="['/users']">Users</button>
+  </div>
+</mat-toolbar>
+<ng-content></ng-content>
 ```
 
 
