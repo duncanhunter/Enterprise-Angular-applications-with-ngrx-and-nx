@@ -254,8 +254,13 @@ export class UsersEffects {
     private usersService: UsersService
   ) {}
 }
+```
 
 ```
+npm install @ngrx/entity
+```
+
+
 
 
 
