@@ -1,14 +1,16 @@
 # Part 5 - Thirdparty dependencies
 
+![](/assets/material-site.png)
+
 [https://material.angular.io/](https://material.angular.io/)
 
-```
-npm install --save @angular/material @angular/cdk @angular/flex-layout
-```
+#### 1.Install angular material, angular animations and angular flex layout
 
 ```
-npm install --save @angular/animations
+npm install --save @angular/material @angular/cdk @angular/flex-layout @angular/animations
 ```
+
+* Add animations module to the main app module.
 
 ```ts
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -21,9 +23,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 export class AppModule { }
 ```
 
+#### 2.Add a new nx lib to hold all the common material components we will use in our app
+
 ```
 ng g lib material
 ```
+
+* Add all the common material components and re-export them
 
 ```ts
 import { NgModule } from '@angular/core';
@@ -71,7 +77,6 @@ import {
   ]
 })
 export class MaterialModule {}
-
 ```
 
 ```ts
