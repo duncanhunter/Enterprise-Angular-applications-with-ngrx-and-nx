@@ -1,31 +1,49 @@
 # Part 1 -  Creating an nx workspace
 
+We will be building out the beginning of two applications a customer portal and an admin portal.
 
+![](/assets/workspaces-demoapp.png)_**figure: nx workspaces diagram**_
+
+#### 1 .Create a new nx workspace
+
+* Run the below command in a terminal to make a new nx workspace
 
 ```
 create-nx-workspace demo-app
 ```
 
-look at
+#### 2. Examine the output of the following files
 
 1. cli.json
 2. tsconfig paths
 3. package.json
 4. apps and libs empty
 
-change from css to scss
+#### 3. Change from css to scss
+
+* Open up angular .angular-cli.json and change the default style type.
+
+_**.angular-cli.json**_
 
 ```
 "styleExt": "scss"
 ```
 
+#### 4. Create a new workspace app
+
+* By default a new NX workspace has no apps or libs yet. You can run the below command to see the extra options to make an app or a lib besides the normal angular CLI commands.
+
 ```
 ng g app --help
 ```
 
+* Create a new app by running the below command in the terminal in a directory of your choice.
+
 ```
 ng g app customer-portal --style scss --routing
 ```
+
+* Add a default set up for ngrx to our new app
 
 ```
 ng g ngrx app --module=apps/customer-portal/src/app/app.module.ts  --root
