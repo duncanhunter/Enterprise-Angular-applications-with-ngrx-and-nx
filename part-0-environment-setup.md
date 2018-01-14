@@ -6,6 +6,8 @@ Dependency checklist:
 2. git
 3. cli.angular.io
 4. nrwl schematics
+5. visual studio code
+6. visual studio code extensions
 
 The main dependency for being able to make an Angular application is node version 4+. The latest stable version of node is best to get if you do not have it already installed.
 
@@ -25,6 +27,8 @@ git --version
 
 If you do not have node installed or you are using a version lower than v4 then I you can get the latest stable version from [www.nodejs.org](/www.nodejs.org).
 
+### Install Angular CLI and NX
+
 We need to have both the Angular CLI and the nrwl schematics installed globally. Run the following commands.
 
 ```
@@ -35,7 +39,17 @@ npm install -g @angular/cli
 npm install -g @nrwl/schematics
 ```
 
-get vscode extensions
+### **Get Visual Studio Code  **
 
-including ng-switcher
+[**https://code.visualstudio.com/**](https://code.visualstudio.com/)
+
+![](/assets/vscode.png)
+
+### Get **Visual Studio Code ** Extensions![](/assets/2016-11-09_17-02-23.png)![](/assets/angularessentials-img.jpg)
+
+### Optionally turn on **Visual Studio Code  autosave**
+
+![](/assets/2017-07-25_21-00-24.jpg)
+
+
 
