@@ -8,6 +8,10 @@
 ng g service services/auth -a=auth
 ```
 
+#### 2. Add login method and http post for the login
+
+_**libs/auth/src/services/auth.service.ts**_
+
 ```ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
