@@ -12,7 +12,7 @@ We will be building out the beginning of two applications a customer portal and 
 create-nx-workspace demo-app
 ```
 
-#### 2. Examine the output of the following files
+#### 2. Examine the output of the following files and commit code to git source control
 
 1. Run the following command to open the new nx workspace in VSCode.
 
