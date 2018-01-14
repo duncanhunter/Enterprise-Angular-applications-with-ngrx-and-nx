@@ -1,5 +1,9 @@
 # Part 2 - Generating components and nx libs
 
+#### 1. Generate a lib 
+
+* Run the below command to see all the lib options
+
 ```
 ng g lib --help
 ```
