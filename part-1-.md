@@ -1,5 +1,7 @@
 # Part 1 -  Creating an nx workspace
 
+
+
 ```
 create-nx-workspace demo-app
 ```
