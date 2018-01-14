@@ -8,6 +8,7 @@ Dependency checklist:
 4. nrwl schematics
 5. visual studio code
 6. visual studio code extensions
+7. chrome extension for redux dev tools
 
 The main dependency for being able to make an Angular application is node version 6+. The latest stable version of node is best to get if you do not have it already installed.
 
@@ -52,4 +53,10 @@ npm install -g @nrwl/schematics
 ### Optionally turn on **Visual Studio Code  autosave**
 
 ![](/assets/2017-07-25_21-00-24.jpg)
+
+#### 7. Install redux dev tools chrome extension
+
+[https://github.com/zalmoxisus/redux-devtools-extension](https://github.com/zalmoxisus/redux-devtools-extension)
+
+
 
