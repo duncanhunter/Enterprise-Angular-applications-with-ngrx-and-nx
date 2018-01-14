@@ -8,7 +8,7 @@
 ng g lib --help
 ```
 
-* Add a new lib called auth
+* Add a new lib called auth. We will not lazy load this lib as auth will always be used by our app
 
 ```
 ng g lib auth --routing --parent-module=apps/customer-portal/src/app/app.module.ts
@@ -28,7 +28,7 @@ ng g c components/login-form -a=auth
 
 You may decide not to make this a presentational component but it makes it easier to test and refactor
 
-
+_**libs/auth/src/auth.module.ts**_
 
 ```ts
 import { NgModule } from '@angular/core';
@@ -49,11 +49,13 @@ const COMPONENTS = [LoginComponent];
 export class AuthModule {}
 ```
 
-index.ts is for the public api for the lib
+* Inspect the index.ts file which is for exporting public api surface for the lib.
 
-add to cli.json libs array allow us to use --app with libs to get cli scaffolding and code generation
+* Inspect .angular-cli.json libs array allow us to use -a with libs to get cli scaffolding and code generation
 
-1. delete everything but 
+2. Delete everything but the router-outlet on the apps app.component.html file
+
+_**apps/customer-portal/src/app.components.ts**_
 
 ```ts
 <router-outlet></router-outlet>

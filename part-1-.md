@@ -12,19 +12,21 @@ We will be building out the beginning of two applications a customer portal and 
 create-nx-workspace demo-app
 ```
 
+#### 2. Examine the output of the following files and commit code to git source control
+
+1. Run the following command to open the new nx workspace in VSCode.
+
+```
+cd demo-app && code .
+```
+
 Until this pull request [https://github.com/nrwl/nx/issues/198](https://github.com/nrwl/nx/issues/198) is merged run the following in the terminal to avoid warnings in terminal.
 
 ```
 npm install prettier@1.10.1 --save
 ```
 
-#### 2. Examine the output of the following files and commit code to git source control
-
-1. Run the following command to open the new nx workspace in VSCode.
-
-```
-code .
-```
+* Inspect the following files
 
 1. .angular-cli.json
 2. tsconfig paths
