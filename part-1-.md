@@ -12,7 +12,7 @@ We will be building out the beginning of two applications a customer portal and 
 create-nx-workspace demo-app
 ```
 
-Until this pull request https://github.com/nrwl/nx/issues/198 is merged run the following in the terminal to avoid warnings in terminal.
+Until this pull request [https://github.com/nrwl/nx/issues/198](https://github.com/nrwl/nx/issues/198) is merged run the following in the terminal to avoid warnings in terminal.
 
 ```
 npm install prettier@1.10.1 --save
@@ -68,6 +68,20 @@ ng g ngrx app --module=apps/customer-portal/src/app/app.module.ts  --onlyEmptyRo
 2. tsconfig paths
 3. package.json
 4. apps and libs empty
+
+
+
+#### 7. Run the app in the browser
+
+* Run the following command to launch the app in the browser.
+
+```
+ng s -a=customer-portal
+```
+
+
+
+
 
 
 
