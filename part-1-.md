@@ -6,10 +6,16 @@ We will be building out the beginning of two applications a customer portal and 
 
 #### 1 .Create a new nx workspace
 
-* Run the below command in a terminal to make a new nx workspace
+* Run the below command in a terminal to make a new nx workspace.
 
 ```
 create-nx-workspace demo-app
+```
+
+Until this pull request https://github.com/nrwl/nx/issues/198 is merged run the following in the terminal to avoid warnings in terminal.
+
+```
+npm install prettier@1.10.1 --save
 ```
 
 #### 2. Examine the output of the following files and commit code to git source control
