@@ -71,7 +71,7 @@ ng g ngrx app --module=apps/customer-portal/src/app/app.module.ts  --onlyEmptyRo
 
 #### 7. Run the app in the browser
 
-* Run the following command to launch the app in the browser.
+* Run the following command to launch the app in the browser. -a is for the app to start and -o is to open in the default browser.
 
 ```
 ng s -a=customer-portal -o
