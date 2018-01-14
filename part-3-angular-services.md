@@ -29,11 +29,13 @@ export class AuthService {
 }
 ```
 
+* Export the auth service from the auth lib and add a static for root method.
+
 ```ts
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Route } from '@angular/router';
-import { LoginComponent } from './container/login/login.component';
+import { LoginComponent } from './containers/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 
@@ -58,9 +60,15 @@ export class AuthModule {
 }
 ```
 
+* update the app module to import the auth lib
+
+_**apps/customer-portal/src/app/app.module.ts**_
+
 ```ts
 AuthModule.forRoot()
 ```
+
+
 
 Add a folder called server to the root directory
 
