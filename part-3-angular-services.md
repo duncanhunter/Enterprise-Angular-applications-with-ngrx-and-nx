@@ -31,6 +31,8 @@ export class AuthService {
 
 * Export the auth service from the auth lib and add a static for root method.
 
+_**libs/auth/src/auth.module.ts**_
+
 ```ts
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
