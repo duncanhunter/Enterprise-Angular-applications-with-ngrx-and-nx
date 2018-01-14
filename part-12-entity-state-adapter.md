@@ -360,11 +360,7 @@ _**libs/admin-portal/users/containers/user-list.component.html**_
 {{users$ | async | json}}
 ```
 
-_**libs/admin-portal/users/containers/user-list.component.html**_
 
-```ts
-{{users$ | async | json}}
-```
 
 
 
