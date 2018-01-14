@@ -2,7 +2,7 @@
 
 Dependency checklist:
 
-1. node v4+
+1. node v6+
 2. git
 3. cli.angular.io
 4. nrwl schematics
@@ -38,6 +38,4 @@ npm install -g @nrwl/schematics
 get vscode extensions
 
 including ng-switcher
-
-
 
