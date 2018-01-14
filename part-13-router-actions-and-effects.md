@@ -6,5 +6,13 @@ _**libs/admin-portal/users/containers/user-list.component.html**_
 {{users$ | async | json}}
 ```
 
+```
+ng g c components/users-table -a=admin-portal/users
+```
+
+```
+ng g c components/users-table-toolbar -a=admin-portal/users
+```
+
 
 
