@@ -336,8 +336,8 @@ export const {
 
 _**libs/admin-portal/users/containers/user-list.component.html**_
 
-```
-{{users$ | async | json}}
+```ts
+import
 ```
 
 
