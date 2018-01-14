@@ -260,7 +260,23 @@ export class UsersEffects {
 npm install @ngrx/entity
 ```
 
-**libs/admin-portal/users/+state/users.init.ts**
+_**libs/admin-portal/users/+state/interfaces.init.ts**_
+
+```ts
+import { EntityState } from '@ngrx/entity';
+import { User } from '@demo-app/data-models';
+
+export interface Users extends EntityState<User> {
+  selectedUserId: number;
+  loading: boolean;
+}
+
+export interface UsersState {
+  readonly users: Users;
+}
+```
+
+_**libs/admin-portal/users/+state/users.init.ts**_
 
 ```ts
 import { Users } from './users.interfaces';
@@ -273,6 +289,55 @@ export const usersInitialState: Users = adapter.getInitialState({
   selectedUserId: null,
   loading: false
 });
+```
+
+_**libs/admin-portal/users/+state/users.reducer.ts**_
+
+```ts
+import { Users } from './users.interfaces';
+import * as usersActions from './users.actions';
+import { adapter } from './users.init';
+
+export function usersReducer(
+  state: Users,
+  action: usersActions.UsersActions
+): Users {
+  switch (action.type) {
+    case usersActions.UsersActionTypes.LoadUsers: {
+      return { ...state, loading: true };
+    }
+
+    case usersActions.UsersActionTypes.LoadUsersSuccess: {
+      return adapter.addMany(action.payload, { ...state, loading: false });
+    }
+
+    default: {
+      return state;
+    }
+  }
+}
+
+export const getSelectedUserId = (state: Users) => state.selectedUserId;
+
+export const {
+  // select the array of user ids
+  selectIds: selectUserIds,
+
+  // select the dictionary of user entities
+  selectEntities: selectUserEntities,
+
+  // select the array of users
+  selectAll: selectAllUsers,
+
+  // select the total user count
+  selectTotal: selectUserTotal
+} = adapter.getSelectors();
+```
+
+_**libs/admin-portal/users/containers/user-list.component.html**_
+
+```
+{{users$ | async | json}}
 ```
 
 
