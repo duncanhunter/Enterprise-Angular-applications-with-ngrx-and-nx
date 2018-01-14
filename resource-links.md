@@ -8,3 +8,7 @@ Duncan Hunters NDC London Sharing Code Presentation Slides - [https://docs.googl
 
 ngrx platform example app - [https://github.com/ngrx/platform/blob/master/example-app/README.md](https://github.com/ngrx/platform/blob/master/example-app/README.md)
 
+angular.io - [https://angular.io](https://angular.io) 
+
+cli.angular.io - [https://cli.angular.io](https://cli.angular.io)
+
