@@ -69,19 +69,13 @@ ng g ngrx app --module=apps/customer-portal/src/app/app.module.ts  --onlyEmptyRo
 3. package.json
 4. apps and libs empty
 
-
-
 #### 7. Run the app in the browser
 
 * Run the following command to launch the app in the browser.
 
 ```
-ng s -a=customer-portal
+ng s -a=customer-portal -o
 ```
-
-
-
-
 
 
 
