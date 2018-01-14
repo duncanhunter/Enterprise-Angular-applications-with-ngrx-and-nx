@@ -43,6 +43,8 @@ ng g app --help
 ng g app customer-portal --style scss --routing
 ```
 
+#### 5. Add ngrx
+
 * Add a default set up for ngrx to our new app. We can run the generate command for ngrx with the module and --onlyEmptyRoot option to only add the StoreModule.forRoot and EffectsModule.forRoot calls without generating any new files versus --root which will make a default reducer and effect.
 
 ```
