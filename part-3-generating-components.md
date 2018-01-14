@@ -14,6 +14,8 @@ ng g lib --help
 ng g lib auth --routing --parent-module=apps/customer-portal/src/app/app.module.ts
 ```
 
+#### 2. Add container and presentational components
+
 * Add a new container component to the auth lib
 
 ```
@@ -50,7 +52,6 @@ const COMPONENTS = [LoginComponent, LoginFormComponent];
   exports: [COMPONENTS]
 })
 export class AuthModule {}
-
 ```
 
 * Inspect the index.ts file which is for exporting public api surface for the lib.
@@ -64,6 +65,8 @@ _**apps/customer-portal/src/app.components.ts**_
 ```ts
 <router-outlet></router-outlet>
 ```
+
+
 
 ```html
 <input type="text" #username>
