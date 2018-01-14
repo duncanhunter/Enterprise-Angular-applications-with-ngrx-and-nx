@@ -1,7 +1,11 @@
 # Part 3 - Angular Services
 
+#### 1. Generate a new angular service
+
+* Run the following command to make a new service in the auth lib
+
 ```
-ng g service auth -a=auth
+ng g service services/auth -a=auth
 ```
 
 ```ts
@@ -199,7 +203,6 @@ function readUsers() {
   const users = JSON.parse(dbRaw).users
   return users;
 }
-
 ```
 
 
