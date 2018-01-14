@@ -26,11 +26,13 @@ Until this pull request [https://github.com/nrwl/nx/issues/198](https://github.c
 npm install prettier@1.10.1 --save
 ```
 
-* Inspect the following files
+* Inspect the following files:
 
-1. .angular-cli.json
-2. tsconfig paths
-3. package.json
+   -   .angular-cli.json
+
+   -   tsconfig paths
+
+   -   package.json
 
 #### 3. Change from css to scss
 
