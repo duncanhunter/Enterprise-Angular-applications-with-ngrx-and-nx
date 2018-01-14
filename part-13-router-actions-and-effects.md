@@ -65,6 +65,21 @@ export type UsersActions =
   | LoadUsersSuccessAction
   | LoadUsersFailAction
   | SetUsersFiltersAction;
+```
+
+```ts
+import { EntityState } from '@ngrx/entity';
+import { User } from '@demo-app/data-models';
+
+export interface Users extends EntityState<User> {
+  selectedUserId: number;
+  loading: boolean;
+  selectedCountry: string
+}
+
+export interface UsersState {
+  readonly users: Users;
+}
 
 ```
 
@@ -80,7 +95,6 @@ export const usersInitialState: Users = adapter.getInitialState({
   loading: false,
   selectedCountry: 'none'
 });
-
 ```
 
 remove load dispactch aciton from component
