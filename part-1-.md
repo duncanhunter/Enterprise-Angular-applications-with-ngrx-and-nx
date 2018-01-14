@@ -14,6 +14,12 @@ create-nx-workspace demo-app
 
 #### 2. Examine the output of the following files
 
+1. Run the following command to open the new nx workspace in VSCode.
+
+```
+code .
+```
+
 1. .angular-cli.json
 2. tsconfig paths
 3. package.json
@@ -56,8 +62,6 @@ ng g ngrx app --module=apps/customer-portal/src/app/app.module.ts  --onlyEmptyRo
 2. tsconfig paths
 3. package.json
 4. apps and libs empty
-
-
 
 
 
