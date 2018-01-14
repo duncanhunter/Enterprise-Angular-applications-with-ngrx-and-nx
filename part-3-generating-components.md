@@ -97,6 +97,33 @@ export class LoginComponent implements OnInit {
 }
 ```
 
+#### 3. Add new nx lib for data models
+
+* Make another lib but this time with a --nomodule flag as we just want to export our files not register a module with angular.
+
+```
+ng generate lib data-models --nomodule
+```
+
+* Add the following file to the lib and export the added data models from the index.ts file
+
+_**libs/data-models/src/data-models.ts**_
+
+```ts
+export interface Authenticate {
+    username: string;
+    password: string;
+}
+```
+
+* Export the interface
+
+_**libs/data-models**_
+
+```ts
+export { Authenticate} from './src/data-models'
+```
+
 * Add basic login form to presentational component
 
 _**libs/auth/src/components/login-form/login-form.component.html**_
@@ -105,6 +132,29 @@ _**libs/auth/src/components/login-form/login-form.component.html**_
 <input type="text" #username>
 <input type="text" #password>
 <button (click)="login(username.value, password.value)">login</button>
+```
+
+* Add an angular @Output to emit the event of a form submission
+
+_**libs/auth/src/components/login-form/login-form.component.ts**_
+
+```ts
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Authenticate } from '@demo-app/data-models';
+
+@Component({
+  selector: 'login-form',
+  templateUrl: './login-form.component.html',
+  styleUrls: ['./login-form.component.scss']
+})
+export class LoginFormComponent {
+  @Output() submit = new EventEmitter<Authenticate>();
+
+  login(username: string, password: string) {
+    this.submit.emit({ username, password});
+  }
+}
+
 ```
 
 
