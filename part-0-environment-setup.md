@@ -58,5 +58,5 @@ npm install -g @nrwl/schematics
 
 [https://github.com/zalmoxisus/redux-devtools-extension](https://github.com/zalmoxisus/redux-devtools-extension)
 
-
+![](/assets/redux-dev-tools.png)
 
