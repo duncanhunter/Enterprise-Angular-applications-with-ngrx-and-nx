@@ -14,20 +14,17 @@ ng g c components/users-table -a=admin-portal/users
 ng g c components/users-table-toolbar -a=admin-portal/users
 ```
 
-```ts
-@Effect()
- loadUsersFromROute = this.dataPersistence.navigation(UserListComponent, {
-   run: (a: ActivatedRouteSnapshot, state: UsersState) => {
-     return this.usersService
-       .getUsers(a.queryParams['country'])
-       .pipe(
-         map((users: User[]) => new usersActions.LoadUsersSuccessAction(users))
-       );
-   },
-   onError: (a: ActivatedRouteSnapshot, e: any) => {
-     return new usersActions.LoadUsersFailAction(e);
-   }
-});
+```html
+<mat-toolbar>
+  <mat-form-field >
+    <mat-select [value]="selectedCountry" (selectionChange)="filter($event.value)" >
+      <mat-option>None</mat-option>
+      <mat-option value="australia" >Australia</mat-option>
+      <mat-option value="england">England</mat-option>
+      <mat-option value="usa">USA</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-toolbar>
 ```
 
 ```ts
@@ -80,7 +77,6 @@ export interface Users extends EntityState<User> {
 export interface UsersState {
   readonly users: Users;
 }
-
 ```
 
 ```ts
