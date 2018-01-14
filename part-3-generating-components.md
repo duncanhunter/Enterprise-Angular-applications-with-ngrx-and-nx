@@ -1,6 +1,6 @@
 # Part 2 - Generating components and nx libs
 
-#### 1. Generate a lib 
+#### 1. Generate a lib
 
 * Run the below command to see all the lib options
 
@@ -8,15 +8,27 @@
 ng g lib --help
 ```
 
+* Add a new lib called auth
+
 ```
 ng g lib auth --routing --parent-module=apps/customer-portal/src/app/app.module.ts
 ```
+
+* Add a new container component to the auth lib
 
 ```
 ng g c container/login -a=auth
 ```
 
-decision not to make a presentational component for this
+* Add a new presentational component to the auth lib
+
+```
+ng g c components/login-form -a=auth
+```
+
+You may decide not to make this a presentational component but it makes it easier to test and refactor
+
+
 
 ```ts
 import { NgModule } from '@angular/core';
