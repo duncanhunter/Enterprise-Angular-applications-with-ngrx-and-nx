@@ -38,7 +38,8 @@ import {
   MatIconModule,
   MatToolbarModule,
   MatProgressSpinnerModule,
-  MatMenuModule
+  MatMenuModule,
+  MatTableModule
 } from '@angular/material';
 
 @NgModule({
@@ -53,6 +54,7 @@ import {
     MatToolbarModule,
     MatProgressSpinnerModule,
     MatMenuModule,
+    MatTableModule
   ],
   exports: [
     FlexLayoutModule,
@@ -65,9 +67,11 @@ import {
     MatToolbarModule,
     MatProgressSpinnerModule,
     MatMenuModule,
+    MatTableModule
   ]
 })
 export class MaterialModule {}
+
 ```
 
 ```ts
