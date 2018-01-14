@@ -17,7 +17,7 @@ ng g lib auth --routing --parent-module=apps/customer-portal/src/app/app.module.
 * Add a new container component to the auth lib
 
 ```
-ng g c container/login -a=auth
+ng g c containers/login -a=auth
 ```
 
 * Add a new presentational component to the auth lib
@@ -34,12 +34,15 @@ _**libs/auth/src/auth.module.ts**_
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Route } from '@angular/router';
-import { LoginComponent } from './container/login/login.component';
+import { LoginComponent } from './containers/login/login.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+
+
 
 export const authRoutes: Route[] = [
   { path: 'login', component: LoginComponent },
 ];
-const COMPONENTS = [LoginComponent];
+const COMPONENTS = [LoginComponent, LoginFormComponent];
 
 @NgModule({
   imports: [CommonModule, RouterModule],
@@ -53,13 +56,15 @@ export class AuthModule {}
 
 * Inspect .angular-cli.json libs array allow us to use -a with libs to get cli scaffolding and code generation
 
-2. Delete everything but the router-outlet on the apps app.component.html file
+* Delete everything but the router-outlet on the apps app.component.html file
 
 _**apps/customer-portal/src/app.components.ts**_
 
 ```ts
 <router-outlet></router-outlet>
 ```
+
+
 
 ```html
 <input type="text" #username>
