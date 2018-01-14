@@ -28,11 +28,11 @@ npm install prettier@1.10.1 --save
 
 * Inspect the following files:
 
-   -   .angular-cli.json
+  * .angular-cli.json
 
-   -   tsconfig paths
+  * tsconfig paths
 
-   -   package.json
+  * package.json
 
 #### 3. Change from css to scss
 
@@ -43,6 +43,8 @@ _**.angular-cli.json**_
 ```
 "styleExt": "scss"
 ```
+
+* Commit the initial NX workspace to source control
 
 #### 4. Create a new workspace app
 
