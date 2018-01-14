@@ -66,13 +66,17 @@ _**apps/customer-portal/src/app.components.ts**_
 <router-outlet></router-outlet>
 ```
 
+* Add the presentational component to the container component.
 
+_**libs/auth/src/containers/login/login.component.html**_
 
 ```html
-<input type="text" #username>
-<input type="text" #password>
-<button (click)="login(username.value, password.value)">login</button>
+<login-form (submit)="login($event)"></login-form>
 ```
+
+* Add login function to container component class
+
+_**libs/auth/src/containers/login/login.component.ts**_
 
 ```ts
 import { Component, OnInit } from '@angular/core';
@@ -83,16 +87,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   login(username: string, password: string) {
     console.log(username, password);
   }
 }
+```
+
+* Add basic login form to presentational component
+
+_**libs/auth/src/components/login-form/login-form.component.html**_
+
+```html
+<input type="text" #username>
+<input type="text" #password>
+<button (click)="login(username.value, password.value)">login</button>
 ```
 
 
