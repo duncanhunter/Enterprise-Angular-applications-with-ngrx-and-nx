@@ -14,10 +14,9 @@ create-nx-workspace demo-app
 
 #### 2. Examine the output of the following files
 
-1. cli.json
+1. .angular-cli.json
 2. tsconfig paths
 3. package.json
-4. apps and libs empty
 
 #### 3. Change from css to scss
 
@@ -50,6 +49,15 @@ ng g app customer-portal --style scss --routing
 ```
 ng g ngrx app --module=apps/customer-portal/src/app/app.module.ts  --onlyEmptyRoot
 ```
+
+#### 6. Examine angular app and module structure
+
+1. app.module.ts
+2. tsconfig paths
+3. package.json
+4. apps and libs empty
+
+
 
 
 
