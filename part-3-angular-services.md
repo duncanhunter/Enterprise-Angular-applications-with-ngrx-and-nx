@@ -68,17 +68,19 @@ _**apps/customer-portal/src/app/app.module.ts**_
 AuthModule.forRoot()
 ```
 
+#### 3. Add a json-server to be able to make http requests and mock a real server
 
+* Add a folder called server to the root directory
 
-Add a folder called server to the root directory
+* Add a file called db.json and index.ts
 
-Add a file called db.json and index.js
-
-add json-server
+* add json-server and ts-node
 
 ```
-npm i json-server --save-dev
+npm i json-server ts-node --save-dev
 ```
+
+* Add the below script to the scripts in the package.json
 
 _**package.json**_
 
@@ -87,6 +89,8 @@ scripts: {
 "server" : "json-server --watch ./server/db.json"
 }
 ```
+
+* Add the default mock data to the db.json file
 
 _**server/db.json**_
 
@@ -136,6 +140,8 @@ _**server/db.json**_
     ]
   }
 ```
+
+* Add the mock server code below
 
 _**server/index.ts**_
 
@@ -215,6 +221,12 @@ function readUsers() {
   const users = JSON.parse(dbRaw).users
   return users;
 }
+```
+
+* Start the server and leave it running whenever you use the apps.
+
+```
+npm run server
 ```
 
 
