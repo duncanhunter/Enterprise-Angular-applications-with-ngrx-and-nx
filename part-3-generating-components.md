@@ -28,6 +28,8 @@ ng g c components/login-form -a=auth
 
 You may decide not to make this a presentational component but it makes it easier to test and refactor
 
+* Add a route to the auth module and a custom components array to make it easier to re-export components.
+
 _**libs/auth/src/auth.module.ts**_
 
 ```ts
@@ -36,8 +38,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Route } from '@angular/router';
 import { LoginComponent } from './containers/login/login.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
-
-
 
 export const authRoutes: Route[] = [
   { path: 'login', component: LoginComponent },
@@ -50,6 +50,7 @@ const COMPONENTS = [LoginComponent, LoginFormComponent];
   exports: [COMPONENTS]
 })
 export class AuthModule {}
+
 ```
 
 * Inspect the index.ts file which is for exporting public api surface for the lib.
@@ -63,8 +64,6 @@ _**apps/customer-portal/src/app.components.ts**_
 ```ts
 <router-outlet></router-outlet>
 ```
-
-
 
 ```html
 <input type="text" #username>
