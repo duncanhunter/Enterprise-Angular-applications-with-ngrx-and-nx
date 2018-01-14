@@ -308,7 +308,7 @@ export function usersReducer(
     }
 
     case usersActions.UsersActionTypes.LoadUsersSuccess: {
-      return adapter.addMany(action.payload, { ...state, loading: false });
+      return adapter.addAll(action.payload, { ...state, loading: false });
     }
 
     default: {
@@ -359,8 +359,6 @@ _**libs/admin-portal/users/containers/user-list.component.html**_
 ```ts
 {{users$ | async | json}}
 ```
-
-
 
 
 
