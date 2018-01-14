@@ -66,7 +66,7 @@ npm i json-server --save-dev
 
 _**package.json**_
 
-```
+```json
 scripts: {
 "server" : "json-server --watch ./server/db.json"
 }
@@ -126,9 +126,8 @@ _**server/index.ts**_
 ```ts
 const jsonServer = require('json-server');
 const server = jsonServer.create();
-const router = jsonServer.router('db.json');
+const router = jsonServer.router('server/db.json');
 const middlewares = jsonServer.defaults();
-const async = require('async');
 const db = require('./db.json');
 const fs = require('fs');
 
@@ -200,6 +199,7 @@ function readUsers() {
   const users = JSON.parse(dbRaw).users
   return users;
 }
+
 ```
 
 
