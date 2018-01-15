@@ -45,7 +45,6 @@ export class LoginFormComponent {
     });
   }
 }
-
 ```
 
 * Add ngx-errors to the form
@@ -73,8 +72,8 @@ _**libs/auth/src/components/login-form/login-form.component.html**_
                     </div>
                 </mat-error>
             </mat-input-container>
-            <button mat-raised-button (click)="login()">login</button>
         </form>
+        <button mat-raised-button (click)="login()">login</button>
     </mat-card-content>
 </mat-card>
 ```
