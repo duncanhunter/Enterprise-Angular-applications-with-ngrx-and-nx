@@ -31,6 +31,8 @@ ng g lib material
 
 * Add all the common material components and re-export them
 
+_**libs/material/src/material.module.ts**_
+
 ```ts
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -79,6 +81,10 @@ import {
 export class MaterialModule {}
 ```
 
+* Add material module to auth module
+
+_**libs/auth/src/auth.module.ts**_
+
 ```ts
 import { MaterialModule } from '@demo-app/material';
 
@@ -90,9 +96,17 @@ imports: [CommonModule, RouterModule, HttpClientModule, MaterialModule],
 export class AuthModule { }
 ```
 
+#### 3. Add material default styles
+
+#### _**apps/customer-portal/src/styles.scss**_
+
 ```css
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 ```
+
+* Update the login-form to use material components
+
+_**libs/auth/src/components/login-form/login-form.component.html**_
 
 ```html
 <mat-card>
@@ -110,6 +124,8 @@ export class AuthModule { }
     </mat-card-content>
 </mat-card>
 ```
+
+#### 4. Go and explore flex layout docs
 
 [https://tburleson-layouts-demos.firebaseapp.com/\#/docs](https://tburleson-layouts-demos.firebaseapp.com/#/docs)
 
