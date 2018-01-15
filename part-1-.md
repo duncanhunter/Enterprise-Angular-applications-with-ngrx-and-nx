@@ -85,5 +85,7 @@ ng s -a=customer-portal -o
 
 * See the default state of the app in the redux dev tools![](/assets/default-ngrx-state.png)
 
+#### 8. Commit to repo for the class \(Instructor only\)
+
 
 
