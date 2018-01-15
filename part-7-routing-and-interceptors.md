@@ -254,7 +254,7 @@ _**libs/auth/src/services/auth.service.ts**_
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
-import { User } from '@demo-app/data-models';
+import { User, Authenticate } from '@demo-app/data-models';
 
 @Injectable()
 export class AuthService {
@@ -263,17 +263,16 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) {}
 
-  login(username: string, password: string) {
+  login(authenticate: Authenticate) {
     return this.httpClient
-      .post('http://localhost:3000/login', {
-        username: username,
-        password: password
-      })
-      .pipe(tap((user: User) => {
-        this.isAuthenticated = true;
-        this.user = user;
-        this.setAuthToken(user.token);
-      }));
+      .post('http://localhost:3000/login', authenticate)
+      .pipe(
+        tap((user: User) => {
+          this.isAuthenticated = true;
+          this.user = user;
+          this.setAuthToken(user.token);
+        })
+      );
   }
 
   setAuthToken(token: string) {
@@ -289,6 +288,8 @@ export class AuthService {
   }
 }
 ```
+
+* Add an angular interceptor
 
 ```ts
 import { Injectable, Injector } from '@angular/core';
