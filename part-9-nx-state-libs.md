@@ -20,6 +20,8 @@ ng generate action auth -a=auth --collection @ngrx/schematics
 ng generate action Auth --collection @ngrx/schematics
 ```
 
+* Swap out original for new nx style effect
+
 _**libs/auth/src/+state/auth.actions.ts**_
 
 ```ts
@@ -52,6 +54,8 @@ LoginAction
 | LoginFailAction
 | LoginSuccessAction;
 ```
+
+### 3. Add an effect
 
 _**libs/auth/src/+state/auth.effects.ts**_
 
@@ -157,6 +161,8 @@ export class LoginComponent implements OnInit {
 }
 ```
 
+#### 4. Add route change action on success 
+
 _**libs/auth/src/+state/auth.effects.ts**_
 
 ```ts
@@ -210,9 +216,39 @@ export class AuthEffects {
 }
 ```
 
+#### 5. Add reducer code
 
+_**libs/auth/src/+state/auth.reducer.ts**_
 
+```ts
+import { Auth } from './auth.interfaces';
+import * as authActions from './auth.actions';
 
+export function authReducer(
+  state: Auth,
+  action: authActions.AuthStateActions
+): Auth {
+  switch (action.type) {
+    case authActions.AuthStateActionTypes.Login: {
+      return {
+        ...state,
+        loading: true
+      };
+    }
+    case authActions.AuthStateActionTypes.LoginSuccess: {
+      return {
+        ...state,
+        loading: false,
+        user: action.payload
+      };
+    }
+    default: {
+      return state;
+    }
+  }
+}
+
+```
 
 
 
