@@ -289,7 +289,9 @@ export class AuthService {
 }
 ```
 
-* Add an angular interceptor
+* Add an angular interceptor in a new folder in the auth lib
+
+
 
 ```ts
 import { Injectable, Injector } from '@angular/core';
