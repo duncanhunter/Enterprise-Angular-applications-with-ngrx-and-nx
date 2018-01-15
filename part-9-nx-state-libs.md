@@ -1,6 +1,6 @@
 # Part 9 - nx state libs
 
-#### 1. Add a beta ngrx schematics 
+#### 1. Add a beta ngrx schematics
 
 ```
 npm i github:ngrx/schematics-builds --save-dev
@@ -24,36 +24,36 @@ _**libs/auth/src/+state/auth.actions.ts**_
 
 ```ts
 import { Action } from '@ngrx/store';
-import { User } from '@demo-app/data-models';
+import { User, Authenticate } from '@demo-app/data-models';
 
 export enum AuthStateActionTypes {
-  Login = '[AuthState] Login',
-  LoginSuccess = '[AuthState] Login Success',
-  LoginFail = '[AuthState] Login Fail'
+Login = '[AuthState] Login',
+LoginSuccess = '[AuthState] Login Success',
+LoginFail = '[AuthState] Login Fail'
 }
 
 export class LoginAction implements Action {
-  readonly type = AuthStateActionTypes.Login;
-  constructor(public payload: User) {}
+readonly type = AuthStateActionTypes.Login;
+constructor(public payload: Authenticate) {}
 }
 
 export class LoginSuccessAction implements Action {
-  readonly type = AuthStateActionTypes.LoginSuccess;
-  constructor(public payload) {}
+readonly type = AuthStateActionTypes.LoginSuccess;
+constructor(public payload: User) {}
 }
 
 export class LoginFailAction implements Action {
-  readonly type = AuthStateActionTypes.LoginFail;
-  constructor(public payload) {}
+readonly type = AuthStateActionTypes.LoginFail;
+constructor(public payload) {}
 }
 
-export type AuthStateActions = 
-  LoginAction
-  | LoginFailAction
-  | LoginSuccessAction;
+export type AuthStateActions =
+LoginAction
+| LoginFailAction
+| LoginSuccessAction;
 ```
 
-
+_**libs/auth/src/+state/auth.effects.ts**_
 
 ```ts
 import { Injectable } from '@angular/core';
@@ -69,13 +69,12 @@ import { AuthService } from './../services/auth.service';
 export class AuthEffects {
   @Effect()
   login = this.actions$
-    .ofType(authActions.AuthActionTypes.Login)
+    .ofType(authActions.AuthStateActionTypes.Login)
     .pipe(
       mergeMap((action: authActions.LoginAction) =>
         this.authService
-          .login(action.payload.username, action.payload.password)
+          .login(action.payload)
           .pipe(
-            tap(console.log),
             map(user => new authActions.LoginSuccessAction(user)),
             catchError(error => of(new authActions.LoginFailAction(error)))
           )
@@ -85,6 +84,10 @@ export class AuthEffects {
   constructor(private actions$: Actions, private authService: AuthService) {}
 }
 ```
+
+* Swap out original for new nx style effect
+
+_**libs/auth/src/+state/auth.effects.ts**_
 
 ```ts
 import { Injectable } from '@angular/core';
@@ -100,10 +103,10 @@ import { DataPersistence } from '@nrwl/nx';
 @Injectable()
 export class AuthEffects {
   @Effect()
-  login$ = this.dataPersistence.fetch(authActions.AuthActionTypes.Login, {
+  login$ = this.dataPersistence.fetch(authActions.AuthStateActionTypes.Login, {
     run: (action: authActions.LoginAction, state: AuthState) => {
       return this.authService
-        .login(action.payload.username, action.payload.password)
+        .login(action.payload)
         .pipe(map(user => new authActions.LoginSuccessAction(user)));
     },
 
@@ -119,6 +122,8 @@ export class AuthEffects {
   ) {}
 }
 ```
+
+
 
 ```ts
 import { Component, OnInit } from '@angular/core';
@@ -145,13 +150,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  login() {
-    this.store.dispatch(
-      new authActions.LoginAction({
-        username: this.loginForm.value.username,
-        password: this.loginForm.value.password
-      })
-    );
+  login(authenticate: Authenticate) {
+      this.store.dispatch(new authActions.LoginAction(authenticate));
+  }
   }
 }
 ```
