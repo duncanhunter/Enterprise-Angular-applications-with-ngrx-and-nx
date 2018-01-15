@@ -123,8 +123,6 @@ export class AuthEffects {
 }
 ```
 
-
-
 ```ts
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -212,7 +210,7 @@ export class AuthEffects {
 import { Action } from '@ngrx/store';
 import { User } from '@demo-app/data-models';
 
-export enum AuthActionTypes {
+export enum AuthStateActionTypes {
   Login = '[Auth] Login',
   LoginSuccess = '[Auth] Login Success',
   LoginFail = '[Auth] Login Fail',
@@ -239,7 +237,7 @@ export class NavigateToProfileAction implements Action {
   constructor(public payload:number) {}
 }
 
-export type AuthActions = 
+export type AuthStateActions = 
   LoginAction
   | LoginFailAction
   | LoginSuccessAction
