@@ -1,4 +1,4 @@
-# Part 3 - Angular Services
+# Part 4 - Angular Services
 
 #### 1. Generate a new angular service
 
