@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
 
 * Add a folder called server to the root directory
 
-* Add a file called db.json and index.ts
+* Add a file called db.json and server.ts to the new server folder
 
 * add json-server and ts-node
 
@@ -110,7 +110,7 @@ _**package.json**_
 ```json
 scripts: {
    ...
-    "server": "ts-node ./server/index.ts"
+    "server": "ts-node ./server/server.ts"
    ...
 }
 ```
@@ -168,7 +168,7 @@ _**server/db.json**_
 
 * Add the mock server code below
 
-_**server/index.ts**_
+_**server/server.ts**_
 
 ```ts
 const jsonServer = require('json-server');
