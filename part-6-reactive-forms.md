@@ -8,7 +8,7 @@
 npm i @ultimate/ngxerrors
 ```
 
-3. Add ravtice forms module to auth module imports
+1. Add ravtice forms module to auth module imports
 
 ```ts
 imports: [CommonModule, RouterModule, HttpClientModule, MaterialModule, ReactiveFormsModule],
@@ -76,7 +76,7 @@ _**libs/auth/src/components/login-form/login-form.component.html**_
 </mat-card>
 ```
 
-
+_**libs/data-models/src/data-models.ts**_
 
 ```ts
 export interface User {
@@ -87,6 +87,8 @@ export interface User {
     role: string;
 }
 ```
+
+_**libs/data-models/index.ts**_
 
 ```ts
 export { Authenticate, User } from './src/data-models';
