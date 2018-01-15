@@ -13,18 +13,16 @@ ng g service services/auth -a=auth
 _**libs/auth/src/services/auth.service.ts**_
 
 ```ts
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Authenticate } from '@demo-app/data-models';
 
 @Injectable()
 export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
-  login(username: string, password: string) {
-    return this.httpClient.post('http://localhost:3000/login', {
-      username: username,
-      password: password
-    });
+  login(authenticate:Authenticate) {
+    return this.httpClient.post('http://localhost:3000/login', authenticate);
   }
 }
 ```
@@ -70,7 +68,30 @@ _**apps/customer-portal/src/app/app.module.ts**_
 AuthModule.forRoot()
 ```
 
-#### 3. Add a json-server to be able to make http requests and mock a real server
+#### 3. Update login component to call the service
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './../../services/auth.service';
+import { Authenticate } from '@demo-app/data-models';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
+})
+export class LoginComponent implements OnInit {
+  constructor(private authService: AuthService) {}
+
+  ngOnInit() {}
+
+  login(authenticate: Authenticate) {
+    this.authService.login(authenticate).subscribe()
+  }
+}
+```
+
+#### 4. Add a json-server to be able to make http requests and mock a real server
 
 * Add a folder called server to the root directory
 
