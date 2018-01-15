@@ -119,7 +119,7 @@ _**libs/auth/src/components/login-form/login-form.component.html**_
             <mat-input-container>
                 <input matInput placeholder="password" type="text" #password>
             </mat-input-container>
-            <button mat-raised-button (click)="login(username.value, password.value)">login</button>
+            <button mat-raised-button (click)="login({username:username.value, password:password.value})">login</button>
         </form>
     </mat-card-content>
 </mat-card>
