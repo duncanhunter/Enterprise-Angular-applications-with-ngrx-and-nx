@@ -291,6 +291,8 @@ export class AuthService {
 
 * Add an angular interceptor in a new folder in the auth lib
 
+_**libs/auth/src/interceptors/auth.interceptor.ts**_
+
 ```ts
 import { Injectable, Injector } from '@angular/core';
 import {
@@ -327,6 +329,10 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 }
 ```
+
+* Export auth interceptors from the auth module
+
+_**libs/auth/src/auth.module.ts**_
 
 ```
 import { NgModule, ModuleWithProviders } from '@angular/core';
