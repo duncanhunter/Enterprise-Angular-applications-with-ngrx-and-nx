@@ -161,7 +161,7 @@ export class LoginComponent implements OnInit {
 }
 ```
 
-#### 4. Add route change action on success 
+#### 4. Add route change action on success
 
 _**libs/auth/src/+state/auth.effects.ts**_
 
@@ -181,10 +181,10 @@ import { User } from '@demo-app/data-models';
 @Injectable()
 export class AuthEffects {
   @Effect()
-  login$ = this.dataPersistence.fetch(authActions.AuthActionTypes.Login, {
+  login$ = this.dataPersistence.fetch(authActions.AuthStateActionTypes.Login, {
     run: (action: authActions.LoginAction, state: AuthState) => {
       return this.authService
-        .login(action.payload.username, action.payload.password)
+        .login(action.payload)
         .pipe(
           mergeMap((user: User) => [
             new authActions.LoginSuccessAction(user),
@@ -200,7 +200,7 @@ export class AuthEffects {
 
   @Effect({ dispatch: false })
   navigateToProfile = this.actions
-    .ofType(authActions.AuthActionTypes.NavigateToProfile)
+    .ofType(authActions.AuthStateActionTypes.NavigateToProfile)
     .pipe(
       map((action: authActions.NavigateToProfileAction) =>
         this.router.navigate([`/user-profile/${action.payload}`])
@@ -214,6 +214,7 @@ export class AuthEffects {
     private router: Router
   ) {}
 }
+
 ```
 
 #### 5. Add reducer code
@@ -247,7 +248,6 @@ export function authReducer(
     }
   }
 }
-
 ```
 
 
