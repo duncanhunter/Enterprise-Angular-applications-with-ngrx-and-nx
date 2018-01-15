@@ -1,12 +1,16 @@
 # Part 6 - Reactive Forms
 
+#### 1.Add ngx-errors library to make it easier to display form errors
+
 [https://github.com/UltimateAngular/ngx-errors](https://github.com/UltimateAngular/ngx-errors)
 
 ```
 npm i @ultimate/ngxerrors
 ```
 
-save injecting the formBuilder and less junk calling it.
+#### 2. Add a reactive FormGroup to login form
+
+Note: To save injecting the formBuilder and keeping this a presentational component with no injected dependancies we can just new up a simple FormGroup. You can read more about it here[ https://angular.io/api/forms/FormBuilder](https://angular.io/api/forms/FormBuilder).
 
 ```ts
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -45,8 +49,6 @@ loginForm = new FormGroup({
     </mat-card-content>
 </mat-card>
 ```
-
-
 
 ```ts
 export interface User {
