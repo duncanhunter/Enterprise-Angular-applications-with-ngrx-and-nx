@@ -7,12 +7,6 @@
 
 #### 1.Add a lib for a users profile page
 
-* Run the following command to add a new lib
-
-```
-ng g lib user-profile
-```
-
 * Add a lazy loaded lib with routing. Note this will add linting rules to .angular-cli.json to stop adding this module to other modules.
 
 ```
