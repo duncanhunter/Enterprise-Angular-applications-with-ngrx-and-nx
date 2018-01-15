@@ -88,7 +88,9 @@ _**package.json**_
 
 ```json
 scripts: {
-"server" : "json-server --watch ./server/db.json"
+   ...
+    "server": "ts-node ./server/index.ts"
+   ...
 }
 ```
 
