@@ -41,8 +41,8 @@ import { RouterModule, Route } from '@angular/router';
 import { LoginComponent } from './containers/login/login.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 
-export const authRoutes: Route[] = [
-  { path: 'login', component: LoginComponent },
+export const authRoutes: Route[] = [{ path: 'login', component: LoginComponent }];
+const COMPONENTS = [LoginComponent, LoginFormComponent];
 ];
 const COMPONENTS = [LoginComponent, LoginFormComponent];
 
@@ -154,7 +154,6 @@ export class LoginFormComponent {
     this.submit.emit({ username, password});
   }
 }
-
 ```
 
 
