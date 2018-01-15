@@ -1,3 +1,8 @@
+
+---
+
+---
+
 # Part 7 - Routing and interceptors
 
 #### 1.Add a lib for a users profile page
@@ -383,6 +388,4 @@ export class AuthModule {
   }
 }
 ```
-
-
 
