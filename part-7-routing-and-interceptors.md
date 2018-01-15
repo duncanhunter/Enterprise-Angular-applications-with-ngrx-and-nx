@@ -334,7 +334,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
 _**libs/auth/src/auth.module.ts**_
 
-```
+```ts
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Route } from '@angular/router';
