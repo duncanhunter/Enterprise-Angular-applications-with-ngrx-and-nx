@@ -148,7 +148,7 @@ import { Authenticate } from '@demo-app/data-models';
 export class LoginFormComponent {
   @Output() submit = new EventEmitter<Authenticate>();
 
-  login(username: string, password: string) {
+  login(authenticate: Authenticate) {
     this.submit.emit({ username, password});
   }
 }
