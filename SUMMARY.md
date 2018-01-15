@@ -15,6 +15,9 @@
 * [Part 7 - Routing and interceptors](part-7-routing-and-interceptors.md)
 * [Part 8 - ngrx introduction](part-8-angular-services.md)
 * [Part 9 - nx state libs](part-9-nx-state-libs.md)
+
+## Day 2
+
 * [Part 10 - ngrx selectors](part-10-ngrx-selectors.md)
 * [Part 11 - Adding nx workspaces](part-11-adding-nx-workspaces.md)
 * [Part 12 - Entity state adapter](part-12-entity-state-adapter.md)
