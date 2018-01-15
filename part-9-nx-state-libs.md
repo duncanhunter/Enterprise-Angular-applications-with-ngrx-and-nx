@@ -123,6 +123,8 @@ export class AuthEffects {
 }
 ```
 
+_**libs/auth/src/containers/login/login.component.ts**_
+
 ```ts
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -154,6 +156,8 @@ export class LoginComponent implements OnInit {
   }
 }
 ```
+
+_**libs/auth/src/+state/auth.effects.ts**_
 
 ```ts
 import { Injectable } from '@angular/core';
@@ -206,43 +210,9 @@ export class AuthEffects {
 }
 ```
 
-```ts
-import { Action } from '@ngrx/store';
-import { User } from '@demo-app/data-models';
 
-export enum AuthStateActionTypes {
-  Login = '[Auth] Login',
-  LoginSuccess = '[Auth] Login Success',
-  LoginFail = '[Auth] Login Fail',
-  NavigateToProfile = '[Auth] Navigate To Profile'
-}
 
-export class LoginAction implements Action {
-  readonly type = AuthActionTypes.Login;
-  constructor(public payload) {}
-}
 
-export class LoginSuccessAction implements Action {
-  readonly type = AuthActionTypes.LoginSuccess;
-  constructor(public payload: User) {}
-}
-
-export class LoginFailAction implements Action {
-  readonly type = AuthActionTypes.LoginFail;
-  constructor(public payload) {}
-}
-
-export class NavigateToProfileAction implements Action {
-  readonly type = AuthActionTypes.NavigateToProfile;
-  constructor(public payload:number) {}
-}
-
-export type AuthStateActions = 
-  LoginAction
-  | LoginFailAction
-  | LoginSuccessAction
-  | NavigateToProfileAction;
-```
 
 
 
