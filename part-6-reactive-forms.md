@@ -8,11 +8,17 @@
 npm i @ultimate/ngxerrors
 ```
 
+3. Add ravtice forms module to auth module imports
+
+```ts
+imports: [CommonModule, RouterModule, HttpClientModule, MaterialModule, ReactiveFormsModule],
+```
+
 #### 2. Add a reactive FormGroup to login form
 
 Note: To save injecting the formBuilder and keeping this a presentational component with no injected dependancies we can just new up a simple FormGroup. You can read more about it here[ https://angular.io/api/forms/FormBuilder](https://angular.io/api/forms/FormBuilder).
 
-
+_**libs/auth/src/components/login-form/login-form.component.ts**_
 
 ```ts
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
@@ -38,6 +44,10 @@ export class LoginFormComponent {
 
 }
 ```
+
+* Add ngx-errors to the form
+
+_**libs/auth/src/components/login-form/login-form.component.html**_
 
 ```html
 <mat-card>
@@ -66,17 +76,20 @@ export class LoginFormComponent {
 </mat-card>
 ```
 
+
+
 ```ts
 export interface User {
     username: string;
     id: number;
     country: string;
     token: string
+    role: string;
 }
 ```
 
 ```ts
-export { User } from './src/data-models';
+export { Authenticate, User } from './src/data-models';
 ```
 
 
