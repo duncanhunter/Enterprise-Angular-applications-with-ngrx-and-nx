@@ -1,24 +1,26 @@
 # Part 9 - nx state libs
 
+#### 1. Add a beta ngrx schematics 
+
 ```
 npm i github:ngrx/schematics-builds --save-dev
 ```
 
+Note: The new schematics from the offical ngrx team are in testing but can be good for now while we find out if the nx team swap to action creators [https://github.com/ngrx/platform/issues/674](https://github.com/ngrx/platform/issues/674)
+
+#### 2. Add auth ngrx state
+
 ```
-https://github.com/ngrx/platform/issues/674
+ng generate action auth -a=auth --collection @ngrx/schematics
 ```
+
+* Delete the actions file from the nx code generated files at the path _**libs/auth/src/+state/auth.actions.ts**_
 
 ```
 ng generate action Auth --collection @ngrx/schematics
 ```
 
-```
-ng g lib auth-state
-```
-
-```
-ng g ngrx auth-state --module=libs/auth-state/src/auth-state.module.ts
-```
+_**libs/auth/src/+state/auth.actions.ts**_
 
 ```ts
 import { Action } from '@ngrx/store';
@@ -50,6 +52,8 @@ export type AuthStateActions =
   | LoginFailAction
   | LoginSuccessAction;
 ```
+
+
 
 ```ts
 import { Injectable } from '@angular/core';
