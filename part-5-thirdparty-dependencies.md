@@ -98,7 +98,7 @@ export class AuthModule { }
 
 #### 3. Add material default styles
 
-#### _**apps/customer-portal/src/styles.scss**_
+_**apps/customer-portal/src/styles.scss**_
 
 ```css
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
