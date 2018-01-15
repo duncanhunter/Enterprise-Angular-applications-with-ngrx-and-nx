@@ -43,8 +43,6 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 
 export const authRoutes: Route[] = [{ path: 'login', component: LoginComponent }];
 const COMPONENTS = [LoginComponent, LoginFormComponent];
-];
-const COMPONENTS = [LoginComponent, LoginFormComponent];
 
 @NgModule({
   imports: [CommonModule, RouterModule],
@@ -80,6 +78,7 @@ _**libs/auth/src/containers/login/login.component.ts**_
 
 ```ts
 import { Component, OnInit } from '@angular/core';
+import { Authenticate } from '@demo-app/data-models';
 
 @Component({
   selector: 'app-login',
