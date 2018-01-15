@@ -78,7 +78,6 @@ _**libs/auth/src/containers/login/login.component.ts**_
 
 ```ts
 import { Component, OnInit } from '@angular/core';
-import { Authenticate } from '@demo-app/data-models';
 
 @Component({
   selector: 'app-login',
@@ -90,7 +89,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  login(authenticate:Authenticate) {
+  login(authenticate:any) {
     console.log(authenticate);
   }
 }
