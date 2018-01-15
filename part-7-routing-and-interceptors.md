@@ -177,7 +177,7 @@ _**libs/auth/src/guards/auth/auth.guard.ts**_
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { AuthService } from './../services/auth.service';
+import { AuthService } from './../../services/auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -388,4 +388,6 @@ export class AuthModule {
   }
 }
 ```
+
+
 
