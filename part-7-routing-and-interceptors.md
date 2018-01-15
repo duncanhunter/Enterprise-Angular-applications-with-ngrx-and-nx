@@ -24,16 +24,37 @@ ng g c containers/user-profile -a=user-profile
 
 * Run the following command to navigate
 
+_**libs/auth/src/containers/login/login.component.ts**_
+
 ```ts
-login() {
-  this.authService
-    .login(this.loginForm.value.username, this.loginForm.value.password)
-    .subscribe(
-      (user: User) => this.router.navigate([`/user-profile/${user.id}`]),
-      error => (this.error = error)
-  );
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './../../services/auth.service';
+import { Authenticate, User } from '@demo-app/data-models';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
+})
+export class LoginComponent implements OnInit {
+  constructor(private router: Router, private authService: AuthService) {}
+
+  ngOnInit() {}
+
+  login(authenticate: Authenticate) {
+    this.authService
+      .login(authenticate)
+      .subscribe((user: User) =>
+        this.router.navigate([`/user-profile/${user.id}`])
+      );
+  }
 }
 ```
+
+* Add default routes to app module
+
+_**apps/customer-portal/src/app/app.module.ts**_
 
 ```ts
 RouterModule.forRoot(
@@ -51,7 +72,14 @@ RouterModule.forRoot(
 ),
 ```
 
+_**libs/user-profile/src/user-profile.module.ts**_
+
 ```ts
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { UserProfileComponent } from './containers/user-profile/user-profile.component';
+import { RouterModule } from '@angular/router';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -62,28 +90,43 @@ RouterModule.forRoot(
 export class UserProfileModule {}
 ```
 
+#### 3. Add a route guard to protect profile page
+
+* Generate a guard wit the CLI
+
 ```
-ng g guard guards/auth -a=auth
+ng g guard guards/auth/auth -a=auth
 ```
+
+* Add a static forRoot method and register services and the guard
+
+_**libs/auth/src/auth.module.ts**_
 
 ```ts
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Route } from '@angular/router';
-import { LoginComponent } from './container/login/login.component';
+import { LoginComponent } from './containers/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { MaterialModule } from '@demo-app/material';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthGuard } from '@demo-app/auth/src/guards/auth.guard';
+import { AuthGuard } from './guards/auth/auth.guard';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 export const authRoutes: Route[] = [
   { path: 'login', component: LoginComponent }
 ];
-const COMPONENTS = [LoginComponent];
+const COMPONENTS = [LoginComponent, LoginFormComponent];
 
 @NgModule({
-  imports: [CommonModule, RouterModule, HttpClientModule, MaterialModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    HttpClientModule,
+    MaterialModule,
+    ReactiveFormsModule
+  ],
   declarations: [COMPONENTS],
   exports: [COMPONENTS],
   providers: [AuthService, AuthGuard]
@@ -98,15 +141,33 @@ export class AuthModule {
 }
 ```
 
+* update the authService to set a local flag before we add ngrx later
+
+_**libs/auth/src/services/auth.service.ts**_
+
 ```ts
-login(username: string, password: string) {
-  return this.httpClient.post('http://localhost:3000/login', {
-    username: username,
-    password: password
-  })
-  .pipe(tap(user => this.isAuthenticated = true));
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Authenticate } from '@demo-app/data-models';
+import { tap } from 'rxjs/operators';
+
+@Injectable()
+export class AuthService {
+  isAuthenticated: boolean;
+  constructor(private httpClient: HttpClient) {}
+
+  login(authenticate: Authenticate) {
+    return this.httpClient
+      .post('http://localhost:3000/login', authenticate)
+      .pipe(tap(user => (this.isAuthenticated = true)));
+  }
 }
+
 ```
+
+* Add auth guard logic
+
+_**libs/auth/src/guards/auth/auth.guard.ts**_
 
 ```ts
 import { Injectable } from '@angular/core';
@@ -134,26 +195,55 @@ export class AuthGuard implements CanActivate {
 }
 ```
 
-```ts
-export { AuthModule , authRoutes } from './src/auth.module';
-export { AuthGuard } from './src/guards/auth.guard';
-```
+* add auth guard to main routes
+
+_**apps/customer-portal/src/app/app.module.ts**_
 
 ```ts
-RouterModule.forRoot(
-   [
-     { path: '', pathMatch: 'full', redirectTo: 'user-profile' },
-     { path: 'auth', children: authRoutes },
-     {
-       path: 'user-profile',
-       loadChildren: '@demo-app/user-profile#UserProfileModule',
-       canActivate: [AuthGuard]
-     }
-   ],
-   {
-     initialNavigation: 'enabled'
-   }
-),
+import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { NxModule } from '@nrwl/nx';
+import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { authRoutes, AuthModule } from '@demo-app/auth';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuard } from '@demo-app/auth';
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    NxModule.forRoot(),
+    RouterModule.forRoot(
+      [
+        { path: '', pathMatch: 'full', redirectTo: 'user-profile' },
+        { path: 'auth', children: authRoutes },
+        {
+          path: 'user-profile',
+          loadChildren: '@demo-app/user-profile#UserProfileModule',
+          canActivate: [AuthGuard]
+        }
+      ],
+      {
+        initialNavigation: 'enabled'
+      }
+    ),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreRouterConnectingModule,
+    AuthModule.forRoot(),
+    BrowserAnimationsModule
+  ],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+
 ```
 
 ```ts
