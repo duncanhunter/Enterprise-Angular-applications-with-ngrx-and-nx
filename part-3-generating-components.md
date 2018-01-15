@@ -127,9 +127,9 @@ export { Authenticate} from './src/data-models'
 _**libs/auth/src/components/login-form/login-form.component.html**_
 
 ```html
-<input type="text" #username>
-<input type="text" #password>
-<button (click)="login(username.value, password.value)">login</button>
+<input #username placeholder="username" type="text">
+<input #password placeholder="password" type="text">
+<button (click)="login({username: username.value, password: password.value})">Login</button>
 ```
 
 * Add an angular @Output to emit the event of a form submission
