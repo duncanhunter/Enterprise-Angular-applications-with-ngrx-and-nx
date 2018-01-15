@@ -83,5 +83,9 @@ ng g ngrx app --module=apps/customer-portal/src/app/app.module.ts  --onlyEmptyRo
 ng s -a=customer-portal -o
 ```
 
+* See the default state of the app in the redux dev tools
+
+![](/assets/default-ngrx-state.png)
+
 
 
