@@ -12,15 +12,31 @@ npm i @ultimate/ngxerrors
 
 Note: To save injecting the formBuilder and keeping this a presentational component with no injected dependancies we can just new up a simple FormGroup. You can read more about it here[ https://angular.io/api/forms/FormBuilder](https://angular.io/api/forms/FormBuilder).
 
+
+
 ```ts
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Authenticate } from '@demo-app/data-models';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-...
+@Component({
+  selector: 'login-form',
+  templateUrl: './login-form.component.html',
+  styleUrls: ['./login-form.component.scss']
+})
+export class LoginFormComponent {
+  @Output() submit = new EventEmitter<Authenticate>();
 
-loginForm = new FormGroup({
+  loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
-});
+  });
+
+  login(username: string, password: string) {
+    this.submit.emit({ username, password });
+  }
+
+}
 ```
 
 ```html
