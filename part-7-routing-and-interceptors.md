@@ -162,7 +162,6 @@ export class AuthService {
       .pipe(tap(user => (this.isAuthenticated = true)));
   }
 }
-
 ```
 
 * Add auth guard logic
@@ -243,8 +242,13 @@ import { AuthGuard } from '@demo-app/auth';
   bootstrap: [AppComponent]
 })
 export class AppModule {}
-
 ```
+
+#### 4. Add angular interceptor
+
+* Update auth service to set a token in local storage
+
+_**libs/auth/src/services/auth.service.ts**_
 
 ```ts
 import { Injectable } from '@angular/core';
