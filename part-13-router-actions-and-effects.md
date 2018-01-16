@@ -35,6 +35,39 @@ ng g c components/users-table-toolbar -a=admin-portal/users
 
 * Add a users list table component
 
+_**libs/admin-portal/users/src/components/users-table/users-table.component.ts**_
+
+```ts
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { User } from '@demo-app/data-models';
+import { MatTableDataSource } from '@angular/material';
+
+@Component({
+  selector: 'app-users-table',
+  templateUrl: './users-table.component.html',
+  styleUrls: ['./users-table.component.scss']
+})
+export class UsersTableComponent implements OnChanges {
+  @Input() users: User[];
+
+  displayedColumns = ['username', 'country'];
+  dataSource: MatTableDataSource<User>;
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.dataSource = new MatTableDataSource(this.users);
+  }
+
+  setTableDatasource(dataSource): void {
+    this.dataSource = new MatTableDataSource(this.users);
+  }
+
+}
+```
+
+* Add the html
+
+_**libs/admin-portal/users/src/components/users-table/users-table.component.html**_
+
 ```html
 <div class="mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource">
