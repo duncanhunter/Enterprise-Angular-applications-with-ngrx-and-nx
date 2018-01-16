@@ -266,6 +266,8 @@ LoginAction
 
 * Add new Effect action to navigate
 
+_**libs/auth/src/+state/auth.effects.ts**_
+
 ```ts
 import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
