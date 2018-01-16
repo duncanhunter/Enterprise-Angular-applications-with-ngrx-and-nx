@@ -319,7 +319,15 @@ export class AuthEffects {
 }
 ```
 
-#### 
+#### 7. Export state references in index.ts
+
+_**libs/auth/index.ts**_
+
+```ts
+export { AuthModule, authRoutes } from './src/auth.module';
+export { AuthState } from './src/+state/auth.interfaces';
+export * from './src/+state';
+```
 
 
 
