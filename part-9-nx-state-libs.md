@@ -91,30 +91,39 @@ export class AuthEffects {
 
 * Swap out original for new nx style effect
 
-_**libs/auth/src/containers/login/login.component.ts**_
+_**libs/auth/src/+state/auth.effects.ts**_
 
 ```ts
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { User, Authenticate } from '@demo-app/data-models';
-import { Store } from '@ngrx/store';
-import { AuthState } from './../../+state/auth.interfaces';
-import * as authActions from './../../+state/auth.actions';
+import { Injectable } from '@angular/core';
+import { Effect, Actions } from '@ngrx/effects';
+import { of } from 'rxjs/observable/of';
+import 'rxjs/add/operator/switchMap';
+import { AuthState } from './auth.interfaces';
+import * as authActions from './auth.actions';
+import { map, catchError, tap, mergeMap } from 'rxjs/operators';
+import { AuthService } from './../services/auth.service';
+import { DataPersistence } from '@nrwl/nx';
 
-@Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
-})
-export class LoginComponent implements OnInit {
-  constructor(private store: Store<AuthState>) {}
+@Injectable()
+export class AuthEffects {
+  @Effect()
+  login$ = this.dataPersistence.fetch(authActions.AuthStateActionTypes.Login, {
+    run: (action: authActions.LoginAction, state: AuthState) => {
+      return this.authService
+        .login(action.payload)
+        .pipe(map(user => new authActions.LoginSuccessAction(user)));
+    },
 
-  ngOnInit() {}
+    onError: (action: authActions.LoginAction, error) => {
+      return of(new authActions.LoginFailAction(error));
+    }
+  });
 
-  login(authenticate: Authenticate): void {
-    this.store.dispatch(new authActions.LoginAction(authenticate));
-  }
- }
+  constructor(
+    private actions: Actions,
+    private dataPersistence: DataPersistence<AuthState>,
+    private authService: AuthService
+  ) {}
 }
 ```
 
@@ -153,39 +162,30 @@ export function authReducer(
 
 #### 4. Update LoginComponent to dispatch action
 
-_**libs/auth/src/+state/auth.effects.ts**_
+_**libs/auth/src/containers/login/login.component.ts**_
 
 ```ts
-import { Injectable } from '@angular/core';
-import { Effect, Actions } from '@ngrx/effects';
-import { of } from 'rxjs/observable/of';
-import 'rxjs/add/operator/switchMap';
-import { AuthState } from './auth.interfaces';
-import * as authActions from './auth.actions';
-import { map, catchError, tap, mergeMap } from 'rxjs/operators';
-import { AuthService } from './../services/auth.service';
-import { DataPersistence } from '@nrwl/nx';
 
-@Injectable()
-export class AuthEffects {
-  @Effect()
-  login$ = this.dataPersistence.fetch(authActions.AuthStateActionTypes.Login, {
-    run: (action: authActions.LoginAction, state: AuthState) => {
-      return this.authService
-        .login(action.payload)
-        .pipe(map(user => new authActions.LoginSuccessAction(user)));
-    },
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';import { User, Authenticate } from '@demo-app/data-models';
+import { Store } from '@ngrx/store';
+import { AuthState } from './../../+state/auth.interfaces';
+import * as authActions from './../../+state/auth.actions';
 
-    onError: (action: authActions.LoginAction, error) => {
-      return of(new authActions.LoginFailAction(error));
-    }
-  });
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
+})
+export class LoginComponent implements OnInit {
+  constructor(private store: Store<AuthState>) {}
 
-  constructor(
-    private actions: Actions,
-    private dataPersistence: DataPersistence<AuthState>,
-    private authService: AuthService
-  ) {}
+  ngOnInit() {}
+
+  login(authenticate: Authenticate): void {
+    this.store.dispatch(new authActions.LoginAction(authenticate));
+  }
+ }
 }
 ```
 
