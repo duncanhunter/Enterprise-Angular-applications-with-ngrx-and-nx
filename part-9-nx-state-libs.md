@@ -127,7 +127,39 @@ export class AuthEffects {
 }
 ```
 
-#### 3. Add reducer code
+#### 3. Add default state and interface
+
+* Update state interface
+
+_**libs/auth/src/+state/auth.interfaces.ts**_
+
+```ts
+import { User } from "@demo-app/data-models";
+
+export interface Auth {
+  user: User,
+  loading: boolean
+}
+
+export interface AuthState {
+  readonly auth: Auth;
+}
+```
+
+* Update state init
+
+_**libs/auth/src/+state/auth.init.ts**_
+
+```ts
+import { Auth } from './auth.interfaces';
+
+export const authInitialState: Auth = {
+  user: null,
+  loading: false
+};
+```
+
+#### 4. Add reducer code
 
 _**libs/auth/src/+state/auth.reducer.ts**_
 
@@ -160,38 +192,7 @@ export function authReducer(
 }
 ```
 
-* Update state interface
-
-_**libs/auth/src/+state/auth.interfaces.ts**_
-
-```ts
-import { User } from "@demo-app/data-models";
-
-export interface Auth {
-  user: User,
-  loading: boolean
-}
-
-export interface AuthState {
-  readonly auth: Auth;
-}
-```
-
-Update state init
-
-_**libs/auth/src/+state/auth.init.ts**_
-
-```ts
-import { Auth } from './auth.interfaces';
-
-export const authInitialState: Auth = {
-  user: null,
-  loading: false
-};
-
-```
-
-#### 4. Update LoginComponent to dispatch action
+#### 5. Update LoginComponent to dispatch action
 
 _**libs/auth/src/containers/login/login.component.ts**_
 
@@ -219,7 +220,7 @@ export class LoginComponent implements OnInit {
 }
 ```
 
-#### 5. Add route change action on success
+#### 6. Add route change action on success
 
 * Add a new action to navigate
 
