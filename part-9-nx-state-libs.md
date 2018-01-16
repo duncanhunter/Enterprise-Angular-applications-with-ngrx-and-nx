@@ -11,7 +11,7 @@ Note: The new schematics from the offical ngrx team are in testing but can be go
 #### 2. Add auth ngrx state
 
 ```
-ng generate action auth -a=auth --collection @ngrx/schematics
+ng generate ngrx auth --module=libs/auth/src/auth.module.ts
 ```
 
 * Delete the actions file from the nx code generated files at the path _**libs/auth/src/+state/auth.actions.ts**_
