@@ -31,7 +31,7 @@ _**libs/admin-portal/users/src/components/users-table-toolbar/users-table-toolba
 
 _**libs/admin-portal/users/src/components/users-table-toolbar/users-table-toolbar.component.ts**_
 
-```
+```ts
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
