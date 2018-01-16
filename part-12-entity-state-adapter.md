@@ -254,6 +254,10 @@ export type UsersActions =
   | LoadUsersFailAction;
 ```
 
+* Update the default effect logic
+
+_**libs/admin-portal/users/src/+state/users.effects.ts**_
+
 ```ts
 import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
@@ -295,9 +299,13 @@ export class UsersEffects {
 }
 ```
 
+* Install ngrx's entity library
+
 ```
 npm install @ngrx/entity
 ```
+
+* Add interface information 
 
 _**libs/admin-portal/users/+state/interfaces.init.ts**_
 
@@ -315,6 +323,8 @@ export interface UsersState {
 }
 ```
 
+* Add default state
+
 _**libs/admin-portal/users/+state/users.init.ts**_
 
 ```ts
@@ -329,6 +339,8 @@ export const usersInitialState: Users = adapter.getInitialState({
   loading: false
 });
 ```
+
+* Update the default reducer logic
 
 _**libs/admin-portal/users/+state/users.reducer.ts**_
 
@@ -373,6 +385,10 @@ export const {
 } = adapter.getSelectors();
 ```
 
+* Add default selectors to use entity adapter
+
+_**libs/admin-portal/users/src/+state/index.ts**_
+
 ```ts
 import { createSelector, createFeatureSelector, ActionReducerMap } from '@ngrx/store';
 import * as fromUsers from './users.reducer';
@@ -392,6 +408,8 @@ export const selectCurrentUser = createSelector(
   (userEntities, userId) => userEntities[userId]
 );
 ```
+
+* Check the whole things works and dump the users onto the page
 
 _**libs/admin-portal/users/containers/user-list.component.html**_
 
