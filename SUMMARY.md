@@ -5,6 +5,9 @@
 * [Resource Links](resource-links.md)
 * [Course Description](README.md)
 * [Introduction](chapter1.md)
+
+## Day 1
+
 * [Part 0 - Environment setup](part-0-environment-setup.md)
 * [Part 1 -  Creating an nx workspace](part-1-.md)
 * [Part 2 - Generating components and nx lib](part-3-generating-components.md)
