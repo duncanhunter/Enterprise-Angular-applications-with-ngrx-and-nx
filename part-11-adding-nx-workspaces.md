@@ -41,13 +41,21 @@ _**package.json**_
 export class AppModule { }
 ```
 
-#### 3. Add a new layout lib
+#### 3. Add a new layout lib and component
 
 ```
 ng g lib layout --directory=admin-portal
 ```
 
+* Add a layout container component
+
+```
+ng g c containers/layout -a=admin-portal/layout
+```
+
 * Add a material tool bar
+
+_**libs/admin-portal/layout/src/containers/layout/layout.component.html**_
 
 ```html
 <mat-toolbar color="primary" fxLayout="row">
@@ -59,11 +67,19 @@ ng g lib layout --directory=admin-portal
 <ng-content></ng-content>
 ```
 
+* Add the new component to the admin-portal apps main view
+
+_**apps/admin-portal/src/app/app.component.html**_
+
 ```html
 <app-layout>
     <router-outlet></router-outlet>
 </app-layout>
 ```
+
+* Add styles to styles.scss
+
+_**apps/admin-portal/src/styles.scss**_
 
 ```css
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
@@ -73,7 +89,11 @@ body {
 }
 ```
 
-do not forget the browser animations module
+* Do not forget the browser animations module for Materials dependency and the basic routes
+
+NOTE: When we re-use a module we need to manually configure the routing
+
+_**apps/admin-portal/src/app/app.module.ts**_
 
 ```ts
 @NgModule({
@@ -94,6 +114,10 @@ do not forget the browser animations module
   ...
 ```
 
+* As we did not generate the Auth module to sync with the new app we need to manually register the lazy loaded parts
+
+_**apps/admin-portal/src/tsconfig.app.json**_
+
 ```ts
 {
   "extends": "../../../tsconfig.json",
@@ -112,9 +136,7 @@ do not forget the browser animations module
 }
 ```
 
-```
 
-```
 
 
 
