@@ -1,12 +1,20 @@
 # Part 11 - Adding more nx workspaces
 
+#### 1. Add another app to our nx workspace called admin-portal
+
 ```
 ng g app admin-portal --style scss --routing
 ```
 
+* add default ngrx setup to our new app
+
 ```
-ng g ngrx app --module=apps/admin-portal/src/app/app.module.ts  --root
+ng g ngrx app --module=apps/admin-portal/src/app/app.module.ts  --onlyEmptyRoot
 ```
+
+#### 2. Add scripts to start each app more easily to package.json
+
+_**package.json**_
 
 ```json
 "scripts": {
@@ -17,7 +25,7 @@ ng g ngrx app --module=apps/admin-portal/src/app/app.module.ts  --root
 }
 ```
 
-add auth module
+* Add auth module to the new app
 
 ```ts
 @NgModule({
@@ -33,15 +41,16 @@ add auth module
 export class AppModule { }
 ```
 
+#### 3. Add a new layout lib
+
 ```
 ng g lib layout --directory=admin-portal
 ```
 
-```
-<mat-toolbar color="primary" fxLayout="row">
-```
+* Add a material tool bar
 
 ```html
+<mat-toolbar color="primary" fxLayout="row">
 <span>Admin Portal</span>
   <div class="right-nav">
     <span>{{(user$ | async)?.username}}</span>
