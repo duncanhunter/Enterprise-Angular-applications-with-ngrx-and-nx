@@ -240,18 +240,19 @@ export class LoadUsersAction implements Action {
 
 export class LoadUsersSuccessAction implements Action {
   readonly type = UsersActionTypes.LoadUsersSuccess;
-  constructor(private payload: User[]) {}
+  constructor(public payload: User[]) {}
 }
 
 export class LoadUsersFailAction implements Action {
-  readonly type = UsersActionTypes.LoadUsersSuccess;
-  constructor(private payload: any) {}
+  readonly type = UsersActionTypes.LoadUsersFail;
+  constructor(public payload: any) {}
 }
 
 export type UsersActions =
   | LoadUsersAction
   | LoadUsersSuccessAction
   | LoadUsersFailAction;
+
 ```
 
 * Update the default effect logic
