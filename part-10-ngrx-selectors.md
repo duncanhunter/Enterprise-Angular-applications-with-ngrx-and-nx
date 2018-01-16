@@ -69,6 +69,10 @@ _**libs/customer-portal/layout/src/containers/layout/layout.component.scss**_
 }
 ```
 
+#### 4. Update layout component to select user from the store
+
+_**libs/customer-portal/layout/src/containers/layout/layout.component.ts**_
+
 ```ts
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
