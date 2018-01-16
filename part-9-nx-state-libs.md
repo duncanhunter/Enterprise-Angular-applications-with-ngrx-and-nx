@@ -326,7 +326,7 @@ _**libs/auth/index.ts**_
 ```ts
 export { AuthModule, authRoutes } from './src/auth.module';
 export { AuthState } from './src/+state/auth.interfaces';
-export * from './src/+state';
+// export * from './src/+state';
 ```
 
 
