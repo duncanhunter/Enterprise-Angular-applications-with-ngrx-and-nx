@@ -1,8 +1,14 @@
 # Part 12 - Entity state adapter
 
+#### 1. Add a new route guard
+
 ```
 ng g guard guards/auth-admin/auth-admin -a=auth
 ```
+
+* check in the route guard if the person is an admin
+
+_**libs/auth/src/guards/auth-admin/auth-admin.guard.ts**_
 
 ```ts
 import { Injectable } from '@angular/core';
@@ -38,19 +44,27 @@ export class AuthAdminGuard implements CanActivate {
 }
 ```
 
-Make a users lib in an admin directory
+#### 2. Make a users lib in an admin directory
 
 ```
 ng g lib users --directory=admin-portal --routing --lazy --parent-module=apps/admin-portal/src/app/app.module.ts
 ```
 
+* Add a UserList container component
+
 ```
 ng g c containers/user-list -a=admin-portal/users
 ```
 
+* Add ngrx feature state to the new lib
+
 ```
 ng g ngrx users --module=libs/admin-portal/users/src/users.module.ts
 ```
+
+* Add UserList component to the routes for this lib
+
+_**libs/admin-portal/users/src/containers/user-list**_
 
 ```ts
 @NgModule({
@@ -70,6 +84,10 @@ ng g ngrx users --module=libs/admin-portal/users/src/users.module.ts
 export class UsersModule {}
 ```
 
+* Add the route also to the admin-portal app
+
+_**apps/admin-portal/src/app/app.module.ts**_
+
 ```ts
  RouterModule.forRoot([
   { path: '', pathMatch: 'full', redirectTo: 'user-profile' },
@@ -86,6 +104,8 @@ export class UsersModule {}
   }
 ]),
 ```
+
+#### 3. Update auth module to use new guard
 
 ```ts
 import { NgModule, ModuleWithProviders } from '@angular/core';
@@ -148,6 +168,10 @@ export class AuthModule {
 }
 ```
 
+* Update layout lib to show users menu button in an admin
+
+_**libs/admin-portal/layout/src/containers/layout/layout.component.html**_
+
 ```html
 <mat-toolbar color="primary" fxLayout="row">
   <span>Admin Portal</span>
@@ -159,9 +183,13 @@ export class AuthModule {
 <ng-content></ng-content>
 ```
 
+#### 4. Make a new service for users
+
 ```
 ng g service services/users -a=admin-portal/users
 ```
+
+* add a new method to the service to get users
 
 ```ts
 import { Injectable } from '@angular/core';
@@ -179,11 +207,22 @@ export class UsersService {
 }
 ```
 
-change directory to +state file
+#### 5. Configure ngrx state for users
+
+* Delete the actions file for users and use the ngrx teams generator to make it.
+* Change directory in the file path of your terminal before you run this command to be where you want the file 
+
+```
+cd libs/admin-portal/users/src/+state/
+```
 
 ```ts
 ng g action users --collection @ngrx/schematics
 ```
+
+* Update the actions for getting users
+
+_**libs/admin-portal/users/src/+state/users.actions.ts**_
 
 ```ts
 import { Action } from '@ngrx/store';
