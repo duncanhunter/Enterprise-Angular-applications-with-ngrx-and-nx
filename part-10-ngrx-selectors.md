@@ -96,6 +96,10 @@ export class LayoutComponent implements OnInit {
 }
 ```
 
+* Add layout module to the customer-portal app
+
+_**apps/customer-portal/src/app/app.module.ts**_
+
 ```ts
 import { LayoutModule } from '@demo-app/customer-portal/layout';
 
@@ -110,6 +114,10 @@ import { LayoutModule } from '@demo-app/customer-portal/layout';
 })
 export class AppModule {}
 ```
+
+* Add the layout component to the main app.component.html
+
+_**apps/customer-portal/src/app/app.component.html**_
 
 ```html
 <app-layout>
