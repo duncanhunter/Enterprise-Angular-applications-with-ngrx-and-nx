@@ -165,7 +165,6 @@ export function authReducer(
 _**libs/auth/src/containers/login/login.component.ts**_
 
 ```ts
-
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';import { User, Authenticate } from '@demo-app/data-models';
 import { Store } from '@ngrx/store';
@@ -191,7 +190,48 @@ export class LoginComponent implements OnInit {
 
 #### 5. Add route change action on success
 
-_**libs/auth/src/+state/auth.effects.ts**_
+* Add a new action to navigate
+
+_**libs/auth/src/+state/auth.actions.ts**_
+
+```ts
+import { Action } from '@ngrx/store';
+import { User, Authenticate } from '@demo-app/data-models';
+
+export enum AuthStateActionTypes {
+Login = '[AuthState] Login',
+LoginSuccess = '[AuthState] Login Success',
+LoginFail = '[AuthState] Login Fail',
+NavigateToProfile = '[AuthState] Navigate To Profile'
+}
+
+export class LoginAction implements Action {
+readonly type = AuthStateActionTypes.Login;
+constructor(public payload: Authenticate) {}
+}
+
+export class LoginSuccessAction implements Action {
+readonly type = AuthStateActionTypes.LoginSuccess;
+constructor(public payload: User) {}
+}
+
+export class LoginFailAction implements Action {
+readonly type = AuthStateActionTypes.LoginFail;
+constructor(public payload) {}
+}
+
+export class NavigateToProfileAction implements Action {
+readonly type = AuthStateActionTypes.NavigateToProfile;
+constructor(public payload:number) {}
+}
+
+export type AuthStateActions =
+LoginAction
+| LoginFailAction
+| LoginSuccessAction
+| NavigateToProfileAction;
+
+```
 
 ```ts
 import { Injectable } from '@angular/core';
