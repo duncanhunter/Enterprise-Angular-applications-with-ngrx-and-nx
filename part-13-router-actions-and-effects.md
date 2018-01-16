@@ -33,6 +33,28 @@ ng g c components/users-table-toolbar -a=admin-portal/users
 </mat-toolbar>
 ```
 
+* Add a users list table component
+
+```html
+<div class="mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="country">
+      <mat-header-cell *matHeaderCellDef> Country </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.country}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+```
+
 #### 2. Add filter actions to update state
 
 ```ts
@@ -166,7 +188,6 @@ export class UsersService {
     return this.httpClient.get(url);
   }
 }
-
 ```
 
 
