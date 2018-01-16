@@ -169,6 +169,15 @@ ngOnInit() {
 
 #### 3. Add router method to user-list component
 
+_**libs/admin-portal/users/src/containers/user-list/user-list.component.html**_
+
+```
+<users-table-toolbar (onFilter)="updateUrlFilters($event)"></users-table-toolbar>
+<app-users-table [users]="users$ | async"></app-users-table>
+```
+
+_**libs/admin-portal/users/src/containers/user-list/user-list.component.ts**_
+
 ```ts
 updateUrlFilters(country: string): void {
   const navigationExtras: NavigationExtras = {
