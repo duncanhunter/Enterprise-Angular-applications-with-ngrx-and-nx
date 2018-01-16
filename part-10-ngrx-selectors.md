@@ -2,15 +2,23 @@
 
 Lets add a main menu to our customer portal to show the name of the logged in user.
 
-1. #### Add a new layout lib
+1. #### Add a new layout lib to a customer-portal directory
 
 ```
 ng g lib layout --directory=customer-portal
 ```
 
-#### 2. Add Material and Router module
+#### 2. Add a layout container component
 
-```html
+```
+ng g c containers/layout -a=customer-portal/layout
+```
+
+#### 3. Add Material and Router module
+
+_**libs/customer-portal/layout/src/layout.module.ts**_
+
+```ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@demo-app/material';
@@ -27,15 +35,9 @@ export class LayoutModule {
 }
 ```
 
-#### 3. Add a layout container component 
-
-```
-ng g c containers/layout -a=customer-portal/layout
-```
-
 #### 3. Add a material toolbar
 
-
+_**libs/customer-portal/layout/src/containers/layout/layout.component.html**_
 
 ```ts
 <mat-toolbar color="primary" fxLayout="row">
@@ -47,6 +49,10 @@ ng g c containers/layout -a=customer-portal/layout
 <ng-content></ng-content>
 ```
 
+* Add styles to styles.scss
+
+_**apps/customer-portal/src/styles.scss**_
+
 ```css
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
@@ -54,6 +60,8 @@ body {
     margin: 0;
 }
 ```
+
+_**libs/customer-portal/layout/src/containers/layout/layout.component.scss**_
 
 ```css
 .right-nav {
