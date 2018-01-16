@@ -47,7 +47,8 @@ import {
   MatToolbarModule,
   MatProgressSpinnerModule,
   MatMenuModule,
-  MatTableModule
+  MatTableModule,
+  MatSelectModule
 } from '@angular/material';
 
 @NgModule({
@@ -62,7 +63,8 @@ import {
     MatToolbarModule,
     MatProgressSpinnerModule,
     MatMenuModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule
   ],
   exports: [
     FlexLayoutModule,
@@ -75,10 +77,12 @@ import {
     MatToolbarModule,
     MatProgressSpinnerModule,
     MatMenuModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule {}
+
 ```
 
 * Add material module to auth module
