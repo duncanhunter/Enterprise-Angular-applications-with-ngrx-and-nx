@@ -1,8 +1,14 @@
 # Part 10 - ngrx selectors
 
+Lets add a main menu to our customer portal to show the name of the logged in user.
+
+1. #### Add a new layout lib
+
 ```
 ng g lib layout --directory=customer-portal
 ```
+
+#### 2. Add Material and Router module
 
 ```html
 import { NgModule } from '@angular/core';
@@ -21,9 +27,15 @@ export class LayoutModule {
 }
 ```
 
+#### 3. Add a layout container component 
+
 ```
 ng g c containers/layout -a=customer-portal/layout
 ```
+
+#### 3. Add a material toolbar
+
+
 
 ```ts
 <mat-toolbar color="primary" fxLayout="row">

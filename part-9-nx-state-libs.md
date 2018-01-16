@@ -132,7 +132,7 @@ _**libs/auth/src/containers/login/login.component.ts**_
 ```ts
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { User } from '@demo-app/data-models';
+import { User, Authenticate } from '@demo-app/data-models';
 import { Store } from '@ngrx/store';
 import { AuthState } from './../../+state/auth.interfaces';
 import * as authActions from './../../+state/auth.actions';
@@ -143,21 +143,14 @@ import * as authActions from './../../+state/auth.actions';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  error: string;
-
   constructor(private store: Store<AuthState>) {}
-
-  loginForm = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required])
-  });
 
   ngOnInit() {}
 
-  login(authenticate: Authenticate) {
-      this.store.dispatch(new authActions.LoginAction(authenticate));
+  login(authenticate: Authenticate): void {
+    this.store.dispatch(new authActions.LoginAction(authenticate));
   }
-  }
+}
 }
 ```
 
