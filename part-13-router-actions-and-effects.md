@@ -130,5 +130,44 @@ updateUrlFilters(country: string): void {
 }
 ```
 
+* Add an effect to listen for the route change
+
+```ts
+  @Effect()
+  loadUsersFromRoute = this.dataPersistence.navigation(UserListComponent, {
+    run: (a: ActivatedRouteSnapshot, state: UsersState) => {
+      return this.usersService
+        .getUsers(a.queryParams['country'])
+        .pipe(
+          map((users: User[]) => new usersActions.LoadUsersSuccessAction(users))
+        );
+    },
+    onError: (a: ActivatedRouteSnapshot, e: any) => {
+      return new usersActions.LoadUsersFailAction(e);
+    }
+  });
+```
+
+* Update the user service
+
+```ts
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable()
+export class UsersService {
+  constructor(private httpClient: HttpClient) {}
+
+  getUsers(country: string = null) {
+    const url = country !== null
+      ? `http://localhost:3000/users?country=${country}`
+      : `http://localhost:3000/users`;
+
+    return this.httpClient.get(url);
+  }
+}
+
+```
+
 
 
