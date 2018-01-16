@@ -91,6 +91,68 @@ export class AuthEffects {
 
 * Swap out original for new nx style effect
 
+_**libs/auth/src/containers/login/login.component.ts**_
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { User, Authenticate } from '@demo-app/data-models';
+import { Store } from '@ngrx/store';
+import { AuthState } from './../../+state/auth.interfaces';
+import * as authActions from './../../+state/auth.actions';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
+})
+export class LoginComponent implements OnInit {
+  constructor(private store: Store<AuthState>) {}
+
+  ngOnInit() {}
+
+  login(authenticate: Authenticate): void {
+    this.store.dispatch(new authActions.LoginAction(authenticate));
+  }
+ }
+}
+```
+
+#### 3. Add reducer code
+
+_**libs/auth/src/+state/auth.reducer.ts**_
+
+```ts
+import { Auth } from './auth.interfaces';
+import * as authActions from './auth.actions';
+
+export function authReducer(
+  state: Auth,
+  action: authActions.AuthStateActions
+): Auth {
+  switch (action.type) {
+    case authActions.AuthStateActionTypes.Login: {
+      return {
+        ...state,
+        loading: true
+      };
+    }
+    case authActions.AuthStateActionTypes.LoginSuccess: {
+      return {
+        ...state,
+        loading: false,
+        user: action.payload
+      };
+    }
+    default: {
+      return state;
+    }
+  }
+}
+```
+
+#### 4. Update LoginComponent to dispatch action
+
 _**libs/auth/src/+state/auth.effects.ts**_
 
 ```ts
@@ -124,66 +186,6 @@ export class AuthEffects {
     private dataPersistence: DataPersistence<AuthState>,
     private authService: AuthService
   ) {}
-}
-```
-
-_**libs/auth/src/containers/login/login.component.ts**_
-
-```ts
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { User, Authenticate } from '@demo-app/data-models';
-import { Store } from '@ngrx/store';
-import { AuthState } from './../../+state/auth.interfaces';
-import * as authActions from './../../+state/auth.actions';
-
-@Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
-})
-export class LoginComponent implements OnInit {
-  constructor(private store: Store<AuthState>) {}
-
-  ngOnInit() {}
-
-  login(authenticate: Authenticate): void {
-    this.store.dispatch(new authActions.LoginAction(authenticate));
-  }
-}
-}
-```
-
-#### 4. Add reducer code
-
-_**libs/auth/src/+state/auth.reducer.ts**_
-
-```ts
-import { Auth } from './auth.interfaces';
-import * as authActions from './auth.actions';
-
-export function authReducer(
-  state: Auth,
-  action: authActions.AuthStateActions
-): Auth {
-  switch (action.type) {
-    case authActions.AuthStateActionTypes.Login: {
-      return {
-        ...state,
-        loading: true
-      };
-    }
-    case authActions.AuthStateActionTypes.LoginSuccess: {
-      return {
-        ...state,
-        loading: false,
-        user: action.payload
-      };
-    }
-    default: {
-      return state;
-    }
-  }
 }
 ```
 
