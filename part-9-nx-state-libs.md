@@ -230,8 +230,9 @@ LoginAction
 | LoginFailAction
 | LoginSuccessAction
 | NavigateToProfileAction;
-
 ```
+
+* Add new Effect action to navigate
 
 ```ts
 import { Injectable } from '@angular/core';
