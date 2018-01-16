@@ -1,4 +1,4 @@
-# Part 11 - Adding nx workspaces
+# Part 11 - Adding more nx workspaces
 
 ```
 ng g app admin-portal --style scss --routing
