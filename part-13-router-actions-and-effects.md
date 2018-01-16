@@ -6,13 +6,19 @@ _**libs/admin-portal/users/containers/user-list.component.html**_
 {{users$ | async | json}}
 ```
 
+#### 1 .Add a new presentational components for users
+
 ```
 ng g c components/users-table -a=admin-portal/users
 ```
 
+* Add a toolbar module
+
 ```
 ng g c components/users-table-toolbar -a=admin-portal/users
 ```
+
+* Add a toolbar with select field
 
 ```html
 <mat-toolbar>
@@ -26,6 +32,8 @@ ng g c components/users-table-toolbar -a=admin-portal/users
   </mat-form-field>
 </mat-toolbar>
 ```
+
+#### 2. Add filter actions to update state
 
 ```ts
 import { Action } from '@ngrx/store';
@@ -64,6 +72,8 @@ export type UsersActions =
   | SetUsersFiltersAction;
 ```
 
+* Update the users state to have a selectedCountry 
+
 ```ts
 import { EntityState } from '@ngrx/entity';
 import { User } from '@demo-app/data-models';
@@ -79,6 +89,10 @@ export interface UsersState {
 }
 ```
 
+* Update the initial state
+
+_**libs/admin-portal/users/src/+state/users.interface.ts**_
+
 ```ts
 import { Users } from './users.interfaces';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
@@ -93,7 +107,9 @@ export const usersInitialState: Users = adapter.getInitialState({
 });
 ```
 
-remove load dispactch aciton from component
+* Remove load dispatch aciton from component
+
+_**libs/admin-portal/users/src/+state/users.init.ts**_
 
 ```ts
 ngOnInit() {
@@ -101,6 +117,8 @@ ngOnInit() {
   this.users$ = this.store.select(selectAllUsers);
 }
 ```
+
+#### 3. Add router method to user-list component
 
 ```ts
 updateUrlFilters(country: string): void {
