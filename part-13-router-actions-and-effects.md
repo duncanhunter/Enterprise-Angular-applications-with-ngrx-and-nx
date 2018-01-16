@@ -14,6 +14,8 @@ ng g c components/users-table-toolbar -a=admin-portal/users
 
 * Add a toolbar with select field
 
+_**libs/admin-portal/users/src/components/users-table-toolbar/users-table-toolbar.component.html**_
+
 ```html
 <mat-toolbar>
   <mat-form-field >
@@ -25,6 +27,26 @@ ng g c components/users-table-toolbar -a=admin-portal/users
     </mat-select>
   </mat-form-field>
 </mat-toolbar>
+```
+
+_**libs/admin-portal/users/src/components/users-table-toolbar/users-table-toolbar.component.ts**_
+
+```
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'users-table-toolbar',
+  templateUrl: './users-table-toolbar.component.html',
+  styleUrls: ['./users-table-toolbar.component.scss']
+})
+export class UsersTableToolbarComponent {
+  @Output() onFilter = new EventEmitter<string>();
+  selectedCountry = 'none';
+
+  filter(country:string){
+    this.onFilter.emit(country);
+  }
+}
 ```
 
 * Add a users list table component
