@@ -19,11 +19,13 @@ npm install  --save-dev webpack-bundle-analyzer
 * Once installed add the following entry to the npm scripts in the package.json:
 
 ```
-"bundle-report": "webpack-bundle-analyzer dist/stats.json"
+"bundle-report-admin-portal": "webpack-bundle-analyzer dist/apps/admin-portal/stats.json"
 ```
 
+* Rebuild with --stats-json
+
 ```
- ng build --prod -a=admin-portal --stats-json
+ng build --prod -a=admin-portal --stats-json
 ```
 
 * Run the following command
