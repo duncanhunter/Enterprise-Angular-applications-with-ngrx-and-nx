@@ -125,7 +125,11 @@ _**apps/customer-portal/src/app/app.component.html**_
 </app-layout>
 ```
 
-add index.ts
+#### 5. Add selector file
+
+* Add a file called index.ts to the +state folder of your auth state lib
+
+_**libs/auth/src/+state/index.ts**_
 
 ```ts
 import { createSelector, createFeatureSelector } from '@ngrx/store';
@@ -135,12 +139,20 @@ export const getAuthState = createFeatureSelector<Auth>('auth');
 export const getUser = createSelector(getAuthState, state => state.user);
 ```
 
+* Ensure you have re-exported your publically available paths in the auth libs index.ts file
+
+_**libs/auth/index.ts**_
+
 ```ts
 export { AuthModule , authRoutes } from './src/auth.module';
 export { AuthGuard } from './src/guards/auth.guard';
 export { AuthState } from './src/+state/auth.interfaces';
 export * from './src/+state';
 ```
+
+#### 6. Use selector in Layout component
+
+_**libs/customer-portal/layout/src/containers/layout/layout.component.ts**_
 
 ```ts
 import { Component, OnInit } from '@angular/core';
