@@ -38,5 +38,5 @@ npm install
 
 ### Course Slides {#courseslides}
 
-[https://docs.google.com/presentation/d/1\_nDVY7qIcM7jGI\_yWSaRcjcmRz0aNAEMsA837OHWrsI/edit?usp=sharing](https://docs.google.com/presentation/d/1tBf9HAm0Blc_Mm3sY6mnjgBM-l4ljTtMNh_9NZtWEbM/edit?usp=sharing)
+[https://docs.google.com/presentation/d/1MknPww1MdwzreFvDh086TzqaB5yyQga0PaoRR9bgCXs/edit?usp=sharing](https://docs.google.com/presentation/d/1MknPww1MdwzreFvDh086TzqaB5yyQga0PaoRR9bgCXs/edit?usp=sharing)
 
