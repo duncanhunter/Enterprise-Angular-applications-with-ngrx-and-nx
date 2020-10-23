@@ -29,7 +29,7 @@ By the end of this workshop you will have built a working nx and ngrx applicatio
 * Splitting up related data into multiple reducers
 * Creating ngrx selectors
 * Router actions and effects
-* Building and deploying you nx application
+* Building and deploying your nx application
 * Unit and e2e testing
 
 **Prerequisites** This workshop is for developers with at least a basic understanding of JavaScript and HTML. You do not need angular v2+ experience to attend this course but it is recommended to have done at least the beginner's tutorial on angular.io or equivalent. This course briefly covers the fundamentals of angular components, services, routing and modules but moves onto talking about using them with ngrx and nx workspaces and enterprise patterns for the majority of the workshop.
